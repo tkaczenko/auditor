@@ -43,6 +43,8 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+    testImplementation("org.mockito:mockito-core")
 
     checkstyle("com.puppycrawl.tools:checkstyle:${checkstyleVersion}")
     checkstyle("com.github.sevntu-checkstyle:sevntu-checks:${sevntuChecksVersion}")
