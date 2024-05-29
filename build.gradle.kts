@@ -45,6 +45,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.mockito:mockito-junit-jupiter")
     testImplementation("org.mockito:mockito-core")
+    testImplementation("org.springframework:spring-test")
 
     checkstyle("com.puppycrawl.tools:checkstyle:${checkstyleVersion}")
     checkstyle("com.github.sevntu-checkstyle:sevntu-checks:${sevntuChecksVersion}")
