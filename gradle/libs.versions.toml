@@ -1,0 +1,17 @@
+[versions]
+lombok = "1.18.30"
+commons-math3 = "3.6.1"
+commons-lang3 = "3.6.1"
+guava = "32.1.2-jre"
+junit-jupiter = "5.10.0"
+spring-boot = "3.1.9"
+spring-cloud = "2022.0.4"
+
+[libraries]
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+commons-math3 = { module = "org.apache.commons:commons-math3", version.ref = "commons-math3" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+spring-boot = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
