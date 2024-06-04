@@ -5,7 +5,7 @@ junit-jupiter = "5.10.2"
 spring-boot = "3.1.9"
 spring-cloud = "2022.0.4"
 spotbugs-annotations = "4.8.5"
-github_spotbugs_plugin = "5.2.1"
+spotbugs_plugin = "5.2.1"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
@@ -21,6 +21,4 @@ spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies",
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 spring-cloud-starter-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign" }
-
-[plugins]
-spotbugs = { id = "com.github.spotbugs", version.ref = "github_spotbugs_plugin" }
+spotbugs-gradle-plugin = { module = "com.github.spotbugs.snom:spotbugs-gradle-plugin", version.ref = "spotbugs_plugin" }
