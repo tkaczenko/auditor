@@ -1,6 +1,6 @@
 # Auditor
 
-This is a **Spring Boot** library project that provides comprehensive auditing capabilities for **HTTP** requests and responses in a **Spring Boot** application. It automatically audits inbound requests and responses to application controllers, as well as outbound requests and responses sent via `RestTemplate` or `Feign` clients. The audit data, including request/response payloads, headers, and metadata, is persisted in an **SQL** database.
+This is a **Spring Boot** library project that provides comprehensive auditing capabilities for **HTTP** requests and responses in a **Spring Boot** application. It automatically audits inbound requests and responses to application controllers, as well as outbound requests and responses sent via `RestTemplate` or `Feign` clients. The audit data, including auditRequest/auditResponse payloads, headers, and metadata, is persisted in an **SQL** database.
 
 ## Purpose
 
@@ -20,7 +20,7 @@ To install the **Auditor** library in your **Spring Boot** application, add the 
 
 ```xml
 <dependency>
-    <groupId>com.yourorganization</groupId>
+    <groupId>com.github.tkaczenko</groupId>
     <artifactId>auditor</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -49,11 +49,10 @@ auditor:
 ```
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
 ## Contributing
-Contributions are welcome! Please see the CONTRIBUTING file for guidelines on how to contribute to this project.
+Contributions are welcome! Please see the [CONTRIBUTING](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
 
 ## Contact
 For any inquiries or support, please contact andrii.tkaczenko@gmail.com.
-
