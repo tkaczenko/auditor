@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "demo_audit_record")
+@Table(name = "demo_audit_record", schema = "demo")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor

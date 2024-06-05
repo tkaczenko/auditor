@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
+logging.level:
+  web: DEBUG
+  sql: DEBUG
+  org.springframework.retry: DEBUG
+
+demo-client:
+  url: http://localhost:9562/demo-client
+
+feign:
+  logging-level: FULL
+  url: http://localhost:9562/feign

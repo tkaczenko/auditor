@@ -6,6 +6,8 @@ spring-boot = "3.1.9"
 spring-cloud = "2022.0.4"
 spotbugs-annotations = "4.8.5"
 spotbugs_plugin = "5.2.1"
+java-diff = "0.95"
+h2 = "2.2.220"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
@@ -19,6 +21,9 @@ spring-test = { module = "org.springframework:spring-test" }
 spring-boot = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 spring-cloud-starter-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign" }
 spotbugs-gradle-plugin = { module = "com.github.spotbugs.snom:spotbugs-gradle-plugin", version.ref = "spotbugs_plugin" }
+java-diff = { module = "de.danielbechler:java-object-diff", version.ref = "java-diff" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }

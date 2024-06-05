@@ -3,6 +3,10 @@ plugins {
 }
 
 dependencies {
+    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.java.diff)
+    testImplementation(libs.h2)
+
     implementation(project(":core"))
     implementation(project(":inbound"))
     implementation(project(":outbound"))
