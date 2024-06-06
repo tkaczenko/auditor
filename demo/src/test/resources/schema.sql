@@ -16,6 +16,7 @@ create table if not exists DEMO.DEMO_AUDIT_RECORD (
     http_status int,
     request_method varchar(10),
     create_date_time timestamp,
+    remote_address varchar(255),
     transaction_id varchar
 );
 

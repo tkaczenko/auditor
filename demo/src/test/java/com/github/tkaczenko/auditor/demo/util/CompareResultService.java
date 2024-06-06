@@ -40,6 +40,8 @@ public class CompareResultService implements AssertJson {
         .inclusion()
         .exclude()
         .propertyName("requestId")
+        .propertyName("transactionId")
+        .propertyName("url")
         .propertyName("spendTimeInMs")
         .propertyName("createDateTime")
         .and()

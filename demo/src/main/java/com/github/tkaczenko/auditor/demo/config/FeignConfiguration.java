@@ -1,7 +1,7 @@
 package com.github.tkaczenko.auditor.demo.config;
 
 import com.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
-import com.github.tkaczenko.auditor.core.service.AuditService;
+import com.github.tkaczenko.auditor.core.service.AuditFacade;
 import com.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
 import com.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
 import com.github.tkaczenko.auditor.outbound.feign.FeignAuditRequestLogger;
@@ -19,10 +19,10 @@ public class FeignConfiguration {
   @Bean
   public Logger logger(
       AuditDateTimeProvider auditDateTimeProvider,
-      AuditService auditService,
+      AuditFacade auditFacade,
       BodyHttpReaderService bodyReaderService,
       HeadersHttpReaderService headersReaderService) {
     return new FeignAuditRequestLogger(
-        auditDateTimeProvider, auditService, bodyReaderService, headersReaderService);
+        auditDateTimeProvider, auditFacade, bodyReaderService, headersReaderService);
   }
 }

@@ -1,3 +1,3 @@
 package com.github.tkaczenko.auditor.demo;
 
-public class InboundItest {}
+public class OutboundRestTemplateTests {}
