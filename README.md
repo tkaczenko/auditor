@@ -39,6 +39,7 @@ implementation("com.github.tkaczenko:auditor:0.0.1")
 ```
 
 ### Usage
+
 Once the dependency is added, the library could automatically start auditing HTTP requests and responses. Configuration options are available to customize the auditing behavior, such as specifying which endpoints to audit, excluding certain headers, and more.
 
 `@EnableInboundAuditing`
@@ -63,13 +64,16 @@ public class YourApplication {
 ```
 
 ### Configuration
-Configuration properties for the Auditor library can be added to your `application.properties` or `application.yml` file:
+
+Configuration properties for the Auditor library can be added to your `application.properties` file:
 
 ```properties
 auditor.extendable-from-mdc=true
 auditor.scheduling.cron="0 0 * * * ?"
 auditor.scheduling.fixed-delay=3600000
 ```
+
+or `application.yml`:
 
 ```yaml
   auditor:
@@ -79,11 +83,52 @@ auditor.scheduling.fixed-delay=3600000
       fixed-delay: 3600000
 ```
 
+## Modules
+
+There are several modules in Auditor. Here is a quick overview:
+
+### core
+
+The `core` module is the main library providing persistence of audit data, including payloads, headers, and metadata, in an SQL database. It defines the core entities and repositories for storing and retrieving audit records.
+
+### inbound
+
+The `inbound` module provides automatic auditing of inbound HTTP requests and responses to the application's controllers. It leverages Spring's request interceptor mechanism to capture incoming requests and responses, and persists the audit data using the `core` module.
+
+### outbound
+
+The `outbound` module provides automatic auditing of outbound HTTP requests and responses within the `RestTemplate` client. It intercepts outgoing requests and responses using Spring's `ClientHttpRequestInterceptor`, and persists the audit data using the `core` module.
+
+### outbound-feign
+
+The `outbound-feign` module provides automatic auditing of outbound HTTP requests and responses within the Feign client. It leverages Feign's logger to capture outgoing requests and responses, and persists the audit data using the `core` module.
+
+### cleanup
+
+The `cleanup` module provides scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay. It leverages the ShedLock library to ensure that only one instance of the cleanup job runs at a time, preventing data corruption or race conditions in a clustered environment. The cleanup module is responsible for deleting audit records older than a specified retention period, freeing up disk space and maintaining optimal database performance.
+
+### demo
+
+The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
+
+## Built with
+- Java
+- Kotlin
+- Gradle
+- Spring Boot
+- Spring MVC
+- Spring Data JPA
+- H2 Database
+- ShedLock
+
 ## License
+
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
 ## Contributing
+
 Contributions are welcome! Please see the [CONTRIBUTING](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
 
 ## Contact
+
 For any inquiries or support, please contact [andrii.tkaczenko@gmail.com](mailto:andrii.tkaczenko@gmail.com).
