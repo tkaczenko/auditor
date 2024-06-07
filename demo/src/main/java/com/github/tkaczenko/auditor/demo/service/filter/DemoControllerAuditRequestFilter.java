@@ -6,7 +6,9 @@ import com.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
 import com.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
 import com.github.tkaczenko.auditor.inbound.AuditInboundRequestFilter;
 import com.github.tkaczenko.auditor.inbound.IpAddressSupplier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DemoControllerAuditRequestFilter extends AuditInboundRequestFilter {
 
   public DemoControllerAuditRequestFilter(
@@ -31,5 +33,10 @@ public class DemoControllerAuditRequestFilter extends AuditInboundRequestFilter 
   @Override
   public String getRequestType() {
     return "inbound-requestType";
+  }
+
+  @Override
+  public String[] getUrlPatterns() {
+    return new String[] {"/test/inbound"};
   }
 }
