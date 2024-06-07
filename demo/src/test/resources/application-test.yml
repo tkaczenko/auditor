@@ -27,5 +27,6 @@ feign:
   url: http://localhost:9562/feign
 
 auditor:
+  extendable-from-mdc: true
   scheduling:
     fixed-delay: 3600000
