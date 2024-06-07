@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":inbound"))
     implementation(project(":outbound"))
     implementation(project(":outbound-feign"))
+    implementation(project(":cleanup"))
 
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))

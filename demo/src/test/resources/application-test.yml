@@ -25,3 +25,7 @@ demo-client:
 feign:
   logging-level: FULL
   url: http://localhost:9562/feign
+
+auditor:
+  scheduling:
+    fixed-delay: 3600000
