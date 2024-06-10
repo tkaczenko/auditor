@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 
 @Value
 @Builder
-public class TestScenario {
+public class IntegrationTestScenario {
 
   private final Api api;
   private final Integration integration;
@@ -27,15 +27,15 @@ public class TestScenario {
     return integration.getProviders().get(0);
   }
 
-  public static class TestScenarioBuilder {
+  public static class IntegrationTestScenarioBuilder {
 
-    public TestScenarioBuilder provider(Provider provider) {
+    public IntegrationTestScenarioBuilder provider(Provider provider) {
       this.integration =
           Integration.builder().providers(Collections.singletonList(provider)).build();
       return this;
     }
 
-    public TestScenarioBuilder providers(List<Provider> providers) {
+    public IntegrationTestScenarioBuilder providers(List<Provider> providers) {
       this.integration = Integration.builder().providers(providers).build();
       return this;
     }

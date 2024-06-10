@@ -22,13 +22,14 @@ import org.springframework.data.repository.query.FluentQuery;
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SuppressWarnings("checkstyle:VisibilityModifierCheck")
-public class TestVerifier {
+public class IntegrationTestVerifier {
 
   private final CompareResultService compareResultService = new CompareResultService();
 
   @Autowired private AuditRecordRepository auditRequestRepository;
 
-  protected void verifyAuditRecords(String expectedTransactionId, String actualTransactionId) {
+  protected void verifyAuditRecords(
+      String expectedTransactionId, String actualTransactionId) {
     log.info(
         "Verifying AuditRequest table of workflow by transactionId: expected={}, actual={}",
         expectedTransactionId,
@@ -52,10 +53,10 @@ public class TestVerifier {
                     Example.of(actual, matcher), orderByCreateDateTimeDescending),
             () ->
                 getOrEmpty(
-                    expectedTransactionId,
-                    () ->
-                        auditRequestRepository.findBy(
-                            Example.of(expected, matcher), orderByCreateDateTimeDescending)));
+                        expectedTransactionId,
+                        () ->
+                            auditRequestRepository.findBy(
+                                Example.of(expected, matcher), orderByCreateDateTimeDescending)));
     assertThat(auditRequestsResult).isEmpty();
   }
 

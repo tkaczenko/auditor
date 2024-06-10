@@ -18,4 +18,4 @@ values ('2024-06-13 17:00', null, 200, 'transactionId0',
         '{"Content-Type":["application/json"]}',
         333,
         '127.0.0.1',
-        'http://localhost:9560/test/inbound', default);
+        '/test/inbound', default);

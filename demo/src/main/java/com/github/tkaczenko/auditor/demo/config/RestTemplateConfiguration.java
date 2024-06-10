@@ -1,7 +1,9 @@
 package com.github.tkaczenko.auditor.demo.config;
 
+import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration.DemoClientProperties;
 import com.github.tkaczenko.auditor.outbound.resttemplate.aspect.RestTemplateAuditOutboundRequestInterceptorWithAspect;
 import java.time.Duration;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,10 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
+@RequiredArgsConstructor
 public class RestTemplateConfiguration {
+
+  private final DemoClientProperties demoClientProperties;
 
   @Bean
   public RestTemplate restTemplateClient(
@@ -21,7 +26,8 @@ public class RestTemplateConfiguration {
         .setReadTimeout(Duration.ofMillis(10000))
         .requestFactory(
             () -> new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()))
-        .basicAuthentication("clientId", "clientSecret")
+        .basicAuthentication(
+            demoClientProperties.getClientId(), demoClientProperties.getClientSecret())
         .additionalInterceptors(auditInterceptor)
         .build();
   }

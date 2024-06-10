@@ -15,10 +15,7 @@ public class PropertiesConfiguration {
   public static class DemoClientProperties {
 
     private String url;
-
-    public static class HttpHeaders {
-
-      public static final String TRANSACTION_ID = "TRANSACTION-ID";
-    }
+    private String clientId;
+    private String clientSecret;
   }
 }

@@ -27,15 +27,15 @@ public class CompareResultService implements AssertJson {
   private static final int INITIAL_SIZE = 22;
   private static final int LIST_SIZE_TO_COMPARE_THRESHOLD = 10;
 
-  private final ObjectDiffer differWithExclusions;
+  private final ObjectDiffer objectComparator;
   private final CustomComparator jsonComparator;
 
   public CompareResultService() {
-    differWithExclusions = getDifferWithExclusions();
+    objectComparator = getObjectComparator();
     jsonComparator = getJsonComparator();
   }
 
-  private ObjectDiffer getDifferWithExclusions() {
+  private ObjectDiffer getObjectComparator() {
     return createObjectDifferBuilder()
         .inclusion()
         .exclude()
@@ -52,6 +52,7 @@ public class CompareResultService implements AssertJson {
     return new CustomComparator(
         NON_EXTENSIBLE,
         new Customization("Matched-Stub-Id", (o1, o2) -> true),
+        new Customization("Transfer-Encoding", (o1, o2) -> true),
         new Customization("accept", (o1, o2) -> true),
         new Customization("accept-encoding", (o1, o2) -> true),
         new Customization("connection", (o1, o2) -> true),
@@ -82,12 +83,12 @@ public class CompareResultService implements AssertJson {
   public <T> String compareWithExclusions(
       Supplier<Optional<? extends T>> actualSupplier,
       Supplier<Optional<? extends T>> expectedSupplier) {
-    return compareObjects(actualSupplier, expectedSupplier, differWithExclusions);
+    return compareObjects(actualSupplier, expectedSupplier, objectComparator);
   }
 
   public <T> String compareListsWithExclusions(
       Supplier<List<? extends T>> actualSupplier, Supplier<List<? extends T>> expectedSupplier) {
-    return compareLists(actualSupplier, expectedSupplier, differWithExclusions);
+    return compareLists(actualSupplier, expectedSupplier, objectComparator);
   }
 
   private <T> String compareLists(

@@ -11,8 +11,12 @@ public final class Files {
 
     public static final String INBOUND_SUCCESS_REQUEST =
         "/__files/inbound/inbound-success-request.json";
+    public static final String INBOUND_SUCCESS_REQUEST_TO_REST_TEMPLATE =
+        "/__files/inbound/inbound-success-request-to-rest-template.json";
     public static final String INBOUND_SUCCESS_RESPONSE =
         "/__files/inbound/inbound-success-response.json";
+    public static final String INBOUND_SUCCESS_RESPONSE_TO_REST_TEMPLATE =
+            "/__files/inbound/inbound-success-response-to-rest-template.json";
     public static final String INBOUND_FAILURE_REQUEST =
         "/__files/inbound/inbound-failure-request.json";
     public static final String INBOUND_FAILURE_RESPONSE =

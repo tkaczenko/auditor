@@ -16,33 +16,33 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
 @SuppressWarnings("checkstyle:VisibilityModifierCheck")
-public abstract class AbstractTest extends TestVerifier {
+public abstract class AbstractIntegrationTest extends IntegrationTestVerifier {
 
   @LocalServerPort private int port;
 
   protected abstract void stubScenario(
-      String scenario, String from, String to, TestScenario.Provider provider);
+      String scenario, String from, String to, IntegrationTestScenario.Provider provider);
 
   protected abstract void verifyApiResponseBody(
-          TestScenario.Api api, ValidatableResponse validatableResponse);
+      IntegrationTestScenario.Api api, ValidatableResponse validatableResponse);
 
-  protected void runAndVerify(TestScenario testScenario) {
-    String expectedTransactionId = testScenario.getExpectedTransactionId();
-    String actualTransactionId = testScenario.getApi().getActualTransactionId();
+  protected void runAndVerify(IntegrationTestScenario integrationTestScenario) {
+    String expectedTransactionId = integrationTestScenario.getExpectedTransactionId();
+    String actualTransactionId = integrationTestScenario.getApi().getActualTransactionId();
     if (log.isInfoEnabled()) {
       log.info(
           "Run and verify call to {} for expectedTransactionId={}, actualTransactionId={}",
-          testScenario.getApi().getUrl(),
+          integrationTestScenario.getApi().getUrl(),
           expectedTransactionId,
           actualTransactionId);
     }
 
-    stubScenarios(testScenario.getIntegration());
-    runAndVerifyApiCall(testScenario.getApi());
+    stubScenarios(integrationTestScenario.getIntegration());
+    runAndVerifyApiCall(integrationTestScenario.getApi());
     verifyAuditRecords(expectedTransactionId, actualTransactionId);
   }
 
-  private void runAndVerifyApiCall(TestScenario.Api api) {
+  private void runAndVerifyApiCall(IntegrationTestScenario.Api api) {
     ValidatableResponse validatableResponse =
         given()
             .log()
@@ -60,6 +60,9 @@ public abstract class AbstractTest extends TestVerifier {
       log.info("Validating HTTP status of call to {}: expected={}", api.getUrl(), api.getStatus());
     }
     verifyApiResponseBody(api, validatableResponse);
+    if (log.isInfoEnabled()) {
+      log.info("Used API URL is {}", "http://localhost:%s%s".formatted(port, api.getUrl()));
+    }
   }
 
   protected void validateOptionalFieldInBody(
@@ -68,7 +71,7 @@ public abstract class AbstractTest extends TestVerifier {
         .map(value -> validatableResponse.body(actualFieldName, equalTo(value)));
   }
 
-  private void stubScenarios(TestScenario.Integration integration) {
+  private void stubScenarios(IntegrationTestScenario.Integration integration) {
     if (integration == null) {
       if (log.isInfoEnabled()) {
         log.info("No scenario to stub");
@@ -77,7 +80,7 @@ public abstract class AbstractTest extends TestVerifier {
     }
     String scenario = integration.getScenario();
     List<String> states = integration.getStates();
-    List<TestScenario.Provider> providers = integration.getProviders();
+    List<IntegrationTestScenario.Provider> providers = integration.getProviders();
 
     if (log.isInfoEnabled()) {
       log.info("Stubbing provider scenario {}", scenario);
@@ -85,7 +88,7 @@ public abstract class AbstractTest extends TestVerifier {
     for (int i = 0; i < providers.size(); i++) {
       String from = states.get(i);
       String to = states.get(i + 1);
-      TestScenario.Provider provider = providers.get(i);
+      IntegrationTestScenario.Provider provider = providers.get(i);
 
       stubScenario(scenario, from, to, provider);
     }

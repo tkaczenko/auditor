@@ -15,12 +15,15 @@ spring:
       mode: always
 
 logging.level:
+  com.github.tkaczenko.auditor: DEBUG
   web: DEBUG
   sql: DEBUG
   org.springframework.retry: DEBUG
 
 demo-client:
   url: http://localhost:9562/demo-client
+  client-id: clientId
+  client-secret: clientSecret
 
 feign:
   logging-level: FULL

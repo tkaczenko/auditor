@@ -42,7 +42,7 @@ public class DemoController {
       log.info("Request: {}", request);
     }
     RestTemplateResponse restTemplateResponse =
-            outboundRestTemplateClient.getReport(request.getRequestTransactionId());
+            outboundRestTemplateClient.getReport();
     return ResponseEntity.ok(
         Response.builder()
             .responseTransactionId(restTemplateResponse.getRestTemplateResponseTransactionId())
