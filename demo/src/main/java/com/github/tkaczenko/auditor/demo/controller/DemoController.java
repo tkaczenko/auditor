@@ -37,7 +37,6 @@ public class DemoController {
     if (log.isInfoEnabled()) {
       log.info("Request: {}", request);
     }
-    MDC.clear();
     return ResponseEntity.ok(
         Response.builder().responseTransactionId(request.getRequestTransactionId()).build());
   }
