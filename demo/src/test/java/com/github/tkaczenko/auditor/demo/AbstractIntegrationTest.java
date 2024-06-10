@@ -1,4 +1,4 @@
-package com.github.tkaczenko.auditor.demo.common;
+package com.github.tkaczenko.auditor.demo;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;

@@ -1,4 +1,4 @@
-package com.github.tkaczenko.auditor.demo;
+package com.github.tkaczenko.auditor.demo.outbound.resttemplate;
 
 import static com.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource;
 import static com.github.tkaczenko.auditor.demo.util.Files.Inbound;
@@ -9,8 +9,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
-import com.github.tkaczenko.auditor.demo.common.AbstractIntegrationTest;
-import com.github.tkaczenko.auditor.demo.common.IntegrationTestScenario;
+import com.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
+import com.github.tkaczenko.auditor.demo.IntegrationTestScenario;
 import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration.DemoClientProperties;
 import com.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
 import com.github.tkaczenko.auditor.demo.model.dto.Response;

@@ -1,4 +1,4 @@
-package com.github.tkaczenko.auditor.demo.common;
+package com.github.tkaczenko.auditor.demo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

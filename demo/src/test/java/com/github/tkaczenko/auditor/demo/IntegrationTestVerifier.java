@@ -1,4 +1,4 @@
-package com.github.tkaczenko.auditor.demo.common;
+package com.github.tkaczenko.auditor.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
