@@ -18,4 +18,13 @@ public class PropertiesConfiguration {
     private String clientId;
     private String clientSecret;
   }
+
+  @Data
+  @Configuration
+  @ConfigurationProperties("feign")
+  public static class FeignClientProperties {
+
+    private String url;
+    private String clientReference;
+  }
 }

@@ -28,6 +28,11 @@ demo-client:
 feign:
   logging-level: FULL
   url: http://localhost:9562/feign
+  client-reference: client-reference
+  compression:
+    response:
+      enabled: true
+      useGzipDecoder: true
 
 auditor:
   extendable-from-mdc: true

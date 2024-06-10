@@ -11,16 +11,16 @@ public final class Files {
 
     public static final String INBOUND_SUCCESS_REQUEST =
         "/__files/inbound/inbound-success-request.json";
-    public static final String INBOUND_SUCCESS_REQUEST_TO_REST_TEMPLATE =
-        "/__files/inbound/inbound-success-request-to-rest-template.json";
     public static final String INBOUND_SUCCESS_RESPONSE =
         "/__files/inbound/inbound-success-response.json";
+    public static final String INBOUND_SUCCESS_REQUEST_TO_REST_TEMPLATE =
+        "/__files/inbound/inbound-success-request-to-rest-template.json";
     public static final String INBOUND_SUCCESS_RESPONSE_TO_REST_TEMPLATE =
-            "/__files/inbound/inbound-success-response-to-rest-template.json";
-    public static final String INBOUND_FAILURE_REQUEST =
-        "/__files/inbound/inbound-failure-request.json";
-    public static final String INBOUND_FAILURE_RESPONSE =
-        "/__files/inbound/inbound-failure-response.json";
+        "/__files/inbound/inbound-success-response-to-rest-template.json";
+    public static final String INBOUND_SUCCESS_REQUEST_TO_FEIGN =
+        "/__files/inbound/inbound-success-request-to-feign.json";
+    public static final String INBOUND_SUCCESS_RESPONSE_TO_FEIGN =
+        "/__files/inbound/inbound-success-response-to-feign.json";
   }
 
   @UtilityClass
@@ -29,8 +29,6 @@ public final class Files {
     @UtilityClass
     public static class RestTemplate {
 
-      public static final String REST_TEMPLATE_SUCCESS_REQUEST =
-          "/__files/outbound/rest-template/rest-template-success-request.json";
       public static final String REST_TEMPLATE_SUCCESS_RESPONSE =
           "/__files/outbound/rest-template/rest-template-success-response.json";
     }

@@ -52,6 +52,7 @@ public class CompareResultService implements AssertJson {
     return new CustomComparator(
         NON_EXTENSIBLE,
         new Customization("Matched-Stub-Id", (o1, o2) -> true),
+        new Customization("matched-stub-id", (o1, o2) -> true),
         new Customization("Transfer-Encoding", (o1, o2) -> true),
         new Customization("accept", (o1, o2) -> true),
         new Customization("accept-encoding", (o1, o2) -> true),

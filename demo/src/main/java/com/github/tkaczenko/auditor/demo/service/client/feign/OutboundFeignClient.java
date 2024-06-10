@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
     configuration = FeignConfiguration.class)
 public interface OutboundFeignClient {
 
-  @PostMapping
   @AuditedOutboundCall(
       provider = "outbound-feign-provider",
-      requestType = "outbound-rest-template-request-type")
-  FeignResponse getDigitalIdentityTrustUsInfoSearchVerification(
-      @RequestParam String clientReference, @RequestBody FeignRequest request);
+      requestType = "outbound-feign-request-type")
+  @PostMapping
+  FeignResponse post(
+      @RequestParam(name = "clientReference") String clientReference,
+      @RequestBody FeignRequest request);
 }

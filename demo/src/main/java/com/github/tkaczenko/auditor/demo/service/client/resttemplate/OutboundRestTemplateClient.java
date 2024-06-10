@@ -27,7 +27,7 @@ public class OutboundRestTemplateClient {
   @AuditedOutboundCall(
       provider = "outbound-rest-template-provider",
       requestType = "outbound-rest-template-request-type")
-  public RestTemplateResponse getReport() {
+  public RestTemplateResponse get() {
     String url = demoClientProperties.getUrl();
     return restTemplateClient
         .exchange(url, HttpMethod.GET, HttpEntity.EMPTY, RestTemplateResponse.class)

@@ -13,6 +13,11 @@ public class FeignConfiguration {
   private Logger.Level loggingLevel;
 
   @Bean
+  public Logger.Level loggingLevel() {
+    return loggingLevel;
+  }
+
+  @Bean
   public Logger logger(FeignAuditRequestLogger feignAuditRequestLogger) {
     return feignAuditRequestLogger;
   }
