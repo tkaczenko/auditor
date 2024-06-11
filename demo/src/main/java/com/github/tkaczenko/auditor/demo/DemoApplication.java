@@ -1,17 +1,13 @@
 package com.github.tkaczenko.auditor.demo;
 
-import com.github.tkaczenko.auditor.cleanup.EnableScheduledCleanup;
-import com.github.tkaczenko.auditor.inbound.EnableInboundAuditing;
-import com.github.tkaczenko.auditor.outbound.EnableOutboundAuditing;
+import com.github.tkaczenko.auditor.starter.EnableHttpAuditing;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-@EnableInboundAuditing
-@EnableOutboundAuditing
-@EnableScheduledCleanup
+@EnableHttpAuditing
 @SuppressWarnings("PMD.UseUtilityClass")
 public class DemoApplication {
 
