@@ -21,7 +21,7 @@ logging.level:
   org.springframework.retry: DEBUG
 
 demo-client:
-  url: http://localhost:9562/demo-client
+  url: http://localhost:9561/demo-client
   client-id: clientId
   client-secret: clientSecret
 

@@ -32,7 +32,7 @@ import org.springframework.test.context.jdbc.Sql;
 public class OutboundRestTemplateIntegrationTests extends AbstractIntegrationTest {
 
   public static final String TEST_URL = "/test/outbound/restTemplate";
-  public static final int WIREMOCK_PORT = 9562;
+  public static final int WIREMOCK_PORT = 9561;
 
   @Autowired private DemoClientProperties demoClientProperties;
 

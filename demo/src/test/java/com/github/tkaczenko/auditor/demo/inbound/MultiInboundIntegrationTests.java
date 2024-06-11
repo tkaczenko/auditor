@@ -45,11 +45,11 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
   @Sql("/MultiInboundIntegrationTests/success.sql")
   @DisplayName("when inbound request comes -> should save AuditRecord and return 200")
   void whenInboundRequestComesShouldSaveAuditRecordAndReturn200() {
-    ExecutorService executor = Executors.newSingleThreadExecutor();
-    CompletableFuture.runAsync(this::executeFirst, executor)
-        .thenRunAsync(this::executeSecond, executor)
-        .join();
-    executor.shutdown();
+    try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
+      CompletableFuture.runAsync(this::executeFirst, executor)
+          .thenRunAsync(this::executeSecond, executor)
+          .join();
+    }
   }
 
   @SneakyThrows
@@ -62,7 +62,8 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
                     .status(HttpStatus.OK)
                     .requestBody(readSystemResource(Inbound.INBOUND_MULTI_1_SUCCESS_REQUEST))
                     .responseBody(
-                        Response.class, readSystemResource(Inbound.INBOUND_MULTI_1_SUCCESS_RESPONSE))
+                        Response.class,
+                        readSystemResource(Inbound.INBOUND_MULTI_1_SUCCESS_RESPONSE))
                     .build())
             .expectedTransactionId("transactionId6")
             .build());
@@ -78,7 +79,8 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
                     .status(HttpStatus.OK)
                     .requestBody(readSystemResource(Inbound.INBOUND_MULTI_2_SUCCESS_REQUEST))
                     .responseBody(
-                        Response.class, readSystemResource(Inbound.INBOUND_MULTI_2_SUCCESS_RESPONSE))
+                        Response.class,
+                        readSystemResource(Inbound.INBOUND_MULTI_2_SUCCESS_RESPONSE))
                     .build())
             .expectedTransactionId("transactionId8")
             .build());
