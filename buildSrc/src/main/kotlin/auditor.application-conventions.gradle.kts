@@ -21,4 +21,7 @@ dependencies {
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.cloud.starter.openfeign)
+    implementation(libs.micrometer.brave)
+
+    implementation(libs.h2)
 }
