@@ -13,6 +13,14 @@ public final class Files {
         "/__files/inbound/inbound-success-request.json";
     public static final String INBOUND_SUCCESS_RESPONSE =
         "/__files/inbound/inbound-success-response.json";
+    public static final String INBOUND_MULTI_1_SUCCESS_REQUEST =
+        "/__files/inbound/inbound-multi-1-success-request.json";
+    public static final String INBOUND_MULTI_1_SUCCESS_RESPONSE =
+        "/__files/inbound/inbound-multi-1-success-response.json";
+    public static final String INBOUND_MULTI_2_SUCCESS_REQUEST =
+        "/__files/inbound/inbound-multi-2-success-request.json";
+    public static final String INBOUND_MULTI_2_SUCCESS_RESPONSE =
+        "/__files/inbound/inbound-multi-2-success-response.json";
     public static final String INBOUND_SUCCESS_REQUEST_TO_REST_TEMPLATE =
         "/__files/inbound/inbound-success-request-to-rest-template.json";
     public static final String INBOUND_SUCCESS_RESPONSE_TO_REST_TEMPLATE =
