@@ -9,11 +9,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":inbound"))
-    implementation(project(":outbound"))
-    implementation(project(":outbound-feign"))
-    implementation(project(":cleanup"))
+    implementation(project(":starter"))
 
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))
