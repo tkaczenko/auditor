@@ -19,9 +19,8 @@ public class RestTemplateConfiguration {
 
   @Bean
   public RestTemplate restTemplateClient(
-      RestTemplateBuilder builder,
       RestTemplateAuditOutboundRequestInterceptorWithAspect auditInterceptor) {
-    return builder
+    return new RestTemplateBuilder()
         .setConnectTimeout(Duration.ofMillis(10000))
         .setReadTimeout(Duration.ofMillis(10000))
         .requestFactory(

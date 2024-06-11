@@ -9,6 +9,7 @@ import com.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignRequest;
 import com.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignResponse;
 import com.github.tkaczenko.auditor.demo.service.client.resttemplate.OutboundRestTemplateClient;
 import com.github.tkaczenko.auditor.demo.service.client.resttemplate.dto.RestTemplateResponse;
+import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -30,6 +31,7 @@ public class DemoController {
   private final OutboundRestTemplateClient outboundRestTemplateClient;
   private final OutboundFeignClient outboundFeignClient;
   private final FeignClientProperties feignClientProperties;
+  private final Tracer tracer;
 
   @PostMapping(path = "test/inbound", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Response> testInbound(@RequestBody Request request) {

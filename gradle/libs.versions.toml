@@ -13,7 +13,7 @@ rest-assured = "5.3.2"
 shedlock-spring = "4.29.0"
 assertj = "3.26.0"
 awaitility = "4.2.1"
-micrometer-brave='1.2.5'
+micrometer-brave = "1.2.5"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
@@ -26,6 +26,7 @@ mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter" }
 spring-test = { module = "org.springframework:spring-test" }
 spring-boot = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
