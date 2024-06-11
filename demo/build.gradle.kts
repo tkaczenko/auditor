@@ -8,4 +8,6 @@ dependencies {
     testImplementation(libs.h2)
     testImplementation(libs.wiremock)
     testImplementation(libs.rest.assured)
+    testImplementation(libs.assertj)
+    testImplementation(libs.awaitility)
 }

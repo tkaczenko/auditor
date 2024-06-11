@@ -11,6 +11,8 @@ h2 = "2.2.220"
 wiremock = "3.3.1"
 rest-assured = "5.3.2"
 shedlock-spring = "4.29.0"
+assertj = "3.26.0"
+awaitility = "4.2.1"
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
@@ -34,3 +36,5 @@ wiremock = { module = "org.wiremock:wiremock", version.ref = "wiremock" }
 rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "rest-assured" }
 shedlock-spring = { module = "net.javacrumbs.shedlock:shedlock-spring", version.ref = "shedlock-spring" }
 shedlock-provider-jdbc = { module = "net.javacrumbs.shedlock:shedlock-provider-jdbc-template", version.ref = "shedlock-spring" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }

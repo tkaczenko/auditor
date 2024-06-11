@@ -36,5 +36,3 @@ feign:
 
 auditor:
   extendable-from-mdc: true
-  scheduling:
-    fixed-delay: 3600000
