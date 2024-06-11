@@ -18,6 +18,7 @@ dependencies {
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))
 
+    implementation(libs.spring.boot.starter.actuator)
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.cloud.starter.openfeign)
