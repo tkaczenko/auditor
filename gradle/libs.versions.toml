@@ -13,6 +13,7 @@ rest-assured = "5.3.2"
 shedlock-spring = "4.29.0"
 assertj = "3.26.0"
 awaitility = "4.2.1"
+micrometer-brave='1.2.5'
 
 [libraries]
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
@@ -38,3 +39,4 @@ shedlock-spring = { module = "net.javacrumbs.shedlock:shedlock-spring", version.
 shedlock-provider-jdbc = { module = "net.javacrumbs.shedlock:shedlock-provider-jdbc-template", version.ref = "shedlock-spring" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }

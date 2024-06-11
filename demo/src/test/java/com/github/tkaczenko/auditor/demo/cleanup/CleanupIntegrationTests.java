@@ -17,7 +17,7 @@ import org.springframework.test.context.jdbc.Sql;
 @ActiveProfiles("test")
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = {"auditor.scheduling.cron=*/2 * * * * *"})
+    properties = {"auditor.scheduling.cron=*/3 * * * * *"})
 @Slf4j
 public class CleanupIntegrationTests {
 

@@ -1,7 +1,7 @@
 package com.github.tkaczenko.auditor.demo.inbound;
 
 import static com.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource;
-import static com.github.tkaczenko.auditor.demo.util.Files.Inbound;
+import static com.github.tkaczenko.auditor.demo.util.Files.Inbound.Multi;
 
 import com.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import com.github.tkaczenko.auditor.demo.IntegrationTestScenario;
@@ -60,10 +60,10 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
                 IntegrationTestScenario.Api.builder()
                     .url(TEST_URL)
                     .status(HttpStatus.OK)
-                    .requestBody(readSystemResource(Inbound.INBOUND_MULTI_1_SUCCESS_REQUEST))
+                    .requestBody(readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_REQUEST))
                     .responseBody(
                         Response.class,
-                        readSystemResource(Inbound.INBOUND_MULTI_1_SUCCESS_RESPONSE))
+                        readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_RESPONSE))
                     .build())
             .expectedTransactionId("transactionId6")
             .build());
@@ -77,10 +77,10 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
                 IntegrationTestScenario.Api.builder()
                     .url(TEST_URL)
                     .status(HttpStatus.OK)
-                    .requestBody(readSystemResource(Inbound.INBOUND_MULTI_2_SUCCESS_REQUEST))
+                    .requestBody(readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_REQUEST))
                     .responseBody(
                         Response.class,
-                        readSystemResource(Inbound.INBOUND_MULTI_2_SUCCESS_RESPONSE))
+                        readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_RESPONSE))
                     .build())
             .expectedTransactionId("transactionId8")
             .build());

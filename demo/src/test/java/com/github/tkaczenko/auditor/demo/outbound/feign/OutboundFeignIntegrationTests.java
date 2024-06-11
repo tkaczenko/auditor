@@ -39,7 +39,6 @@ public class OutboundFeignIntegrationTests extends AbstractIntegrationTest {
   @Override
   protected void stubScenario(
       String scenario, String from, String to, IntegrationTestScenario.Provider provider) {
-    // Rewrite it so as to check query param
     stubFor(
         post(urlPathEqualTo("/feign"))
             .inScenario(scenario)

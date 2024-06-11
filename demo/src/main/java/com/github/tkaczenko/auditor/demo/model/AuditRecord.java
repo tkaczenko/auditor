@@ -21,4 +21,7 @@ public class AuditRecord extends AuditRequestResponse {
 
   @Column(name = "transaction_id", updatable = false)
   private String transactionId;
+
+  @Column(name = "trace_id", updatable = false)
+  private String traceId;
 }

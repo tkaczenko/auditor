@@ -17,7 +17,8 @@ create table if not exists DEMO.DEMO_AUDIT_RECORD (
     request_method varchar(10),
     create_date_time timestamp,
     remote_address varchar(255),
-    transaction_id varchar
+    transaction_id varchar,
+    trace_id varchar
 );
 
 create index if not exists idx_demo_demo_audit_record_latest
