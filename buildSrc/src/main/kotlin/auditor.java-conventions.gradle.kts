@@ -37,6 +37,14 @@ java {
     }
 }
 
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+        }
+    }
+}
+
 checkstyle {
     configProperties = mapOf(
         "org.checkstyle.google.suppressionfilter.config" to "${rootDir}/config/checkstyle/suppressions.xml"
@@ -65,6 +73,7 @@ tasks.named<Test>("test") {
 }
 
 tasks.jacocoTestReport {
+    enabled = false
     dependsOn(tasks.test)
     reports {
         html.required = true

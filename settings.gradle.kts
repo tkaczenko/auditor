@@ -3,6 +3,7 @@ plugins {
 }
 
 rootProject.name = "auditor"
+
 include("core")
 include("inbound")
 include("outbound")
