@@ -50,4 +50,5 @@ feign:
       useGzipDecoder: true
 
 auditor:
-  extendable-from-mdc: true
+  persist:
+    extendable-from-mdc: true
