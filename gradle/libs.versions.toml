@@ -14,6 +14,7 @@ shedlock-spring = "4.29.0"
 assertj = "3.26.0"
 awaitility = "4.2.1"
 micrometer-brave = "1.2.5"
+sl4j-api = "2.0.13"
 publish_plugin = "2.0.0"
 release_plugin = "3.0.2"
 
@@ -43,6 +44,7 @@ shedlock-provider-jdbc = { module = "net.javacrumbs.shedlock:shedlock-provider-j
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }
+sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j-api" }
 
 [plugins]
 publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "publish_plugin" }

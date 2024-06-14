@@ -22,6 +22,8 @@ dependencies {
     testCompileOnly(libs.lombok)
     testAnnotationProcessor(libs.lombok)
 
+    implementation(libs.sl4j.api)
+
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockito.junit.core)
     testImplementation(libs.mockito.junit.jupiter)
