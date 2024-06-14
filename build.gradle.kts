@@ -38,12 +38,10 @@ tasks.register("aggregateJavadoc", Javadoc::class) {
     group = "documentation"
     description = "Generates Javadoc for all exported subprojects"
 
-    val javaSources =
-        exportedProjects.flatMap { project(it).sourceSets["main"].allJava.srcDirs }
-    val classpathFiles =
-        exportedProjects.flatMap { project(it).sourceSets["main"].compileClasspath }
+    val javadocTasks =
+        exportedProjects.map { project(it).tasks.withType<Javadoc>().getByName("javadoc") }
 
-    source = files(javaSources).asFileTree
-    classpath = files(classpathFiles)
+    source = files(javadocTasks.map { it.source }).asFileTree
+    classpath = files(javadocTasks.map { it.classpath })
     setDestinationDir(layout.buildDirectory.dir("/docs/javadoc").get().asFile)
 }
