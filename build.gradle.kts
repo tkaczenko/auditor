@@ -4,6 +4,12 @@ plugins {
     id("jacoco-report-aggregation")
 }
 
+description = """
+A Spring Boot library providing comprehensive auditing for HTTP requests and responses. 
+This library automatically audits inbound and outbound HTTP traffic and persists audit data in an SQL database. 
+It facilitates debugging, compliance, and security analysis by offering detailed records of HTTP interactions.
+""".trimIndent()
+
 repositories {
     mavenLocal()
     mavenCentral()
