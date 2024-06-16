@@ -4,10 +4,10 @@ plugins {
 
 rootProject.name = "auditor"
 
-include("core")
-include("inbound")
-include("outbound")
-include("outbound-feign")
+include("auditor.core")
+include("auditor.cleanup")
+include("auditor.inbound")
+include("auditor.outbound")
+include("auditor.outbound.feign")
+include("auditor.starter")
 include("demo")
-include("cleanup")
-include("starter")

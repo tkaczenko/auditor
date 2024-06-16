@@ -9,7 +9,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":starter"))
+    implementation(project(":auditor.starter"))
 
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))
