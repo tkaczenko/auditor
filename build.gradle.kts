@@ -31,7 +31,12 @@ tasks.check {
 }
 
 val exportedProjects = listOf(
-    ":core", ":inbound", ":outbound", ":outbound-feign", ":cleanup", ":starter"
+    ":auditor.core",
+    ":auditor.cleanup",
+    ":auditor.inbound",
+    ":auditor.outbound",
+    ":auditor.outbound.feign",
+    ":auditor.starter"
 )
 
 tasks.register("aggregateJavadoc", Javadoc::class) {
@@ -43,5 +48,11 @@ tasks.register("aggregateJavadoc", Javadoc::class) {
 
     source = files(javadocTasks.map { it.source }).asFileTree
     classpath = files(javadocTasks.map { it.classpath })
+
+    options {
+        this as StandardJavadocDocletOptions
+        addStringOption("-module-source-path", "./*/src/main/java/")
+    }
+
     setDestinationDir(layout.buildDirectory.dir("/docs/javadoc").get().asFile)
 }
