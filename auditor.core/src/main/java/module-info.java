@@ -13,6 +13,7 @@ module auditor.core {
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.databind;
   requires jakarta.persistence;
+  requires org.hibernate.orm.core;
   requires static lombok;
   requires org.slf4j;
   requires spring.beans;
