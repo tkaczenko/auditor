@@ -24,4 +24,5 @@ module auditor.core {
   requires spring.data.jpa;
   requires spring.tx;
   requires spring.web;
+    requires com.github.spotbugs.annotations;
 }
