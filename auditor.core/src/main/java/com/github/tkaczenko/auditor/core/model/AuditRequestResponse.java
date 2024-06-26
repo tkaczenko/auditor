@@ -1,13 +1,16 @@
 package com.github.tkaczenko.auditor.core.model;
 
-import jakarta.persistence.*;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
@@ -21,7 +24,6 @@ import org.hibernate.proxy.HibernateProxy;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -95,20 +97,27 @@ public abstract class AuditRequestResponse {
   @Column(name = "create_date_time", updatable = false)
   private LocalDateTime createDateTime;
 
+  @SuppressFBWarnings("Eq")
   @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null) return false;
-    Class<?> oEffectiveClass =
-        o instanceof HibernateProxy
-            ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass()
-            : o.getClass();
+  public final boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    Class<?> objEffectiveClass =
+        obj instanceof HibernateProxy
+            ? ((HibernateProxy) obj).getHibernateLazyInitializer().getPersistentClass()
+            : obj.getClass();
     Class<?> thisEffectiveClass =
         this instanceof HibernateProxy
             ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass()
             : this.getClass();
-    if (thisEffectiveClass != oEffectiveClass) return false;
-    AuditRequestResponse that = (AuditRequestResponse) o;
+    if (thisEffectiveClass != objEffectiveClass) {
+      return false;
+    }
+    AuditRequestResponse that = (AuditRequestResponse) obj;
     return getRequestId() != null && Objects.equals(getRequestId(), that.getRequestId());
   }
 
