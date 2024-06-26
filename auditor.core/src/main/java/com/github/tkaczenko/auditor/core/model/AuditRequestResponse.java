@@ -1,23 +1,27 @@
 package com.github.tkaczenko.auditor.core.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.proxy.HibernateProxy;
 
 /**
  * Represents an audit request and response entity. This class is used to store information about
  * requests and responses made to or from external services.
  */
 @MappedSuperclass
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -90,4 +94,28 @@ public abstract class AuditRequestResponse {
   /** The date and time when the request was made. */
   @Column(name = "create_date_time", updatable = false)
   private LocalDateTime createDateTime;
+
+  @Override
+  public final boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null) return false;
+    Class<?> oEffectiveClass =
+        o instanceof HibernateProxy
+            ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass()
+            : o.getClass();
+    Class<?> thisEffectiveClass =
+        this instanceof HibernateProxy
+            ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass()
+            : this.getClass();
+    if (thisEffectiveClass != oEffectiveClass) return false;
+    AuditRequestResponse that = (AuditRequestResponse) o;
+    return getRequestId() != null && Objects.equals(getRequestId(), that.getRequestId());
+  }
+
+  @Override
+  public final int hashCode() {
+    return this instanceof HibernateProxy
+        ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode()
+        : getClass().hashCode();
+  }
 }
