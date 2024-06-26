@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Feature: Automatic auditing of outbound HTTP requests and responses within
   - `RestTemplate` client
   - `Feign` client.
+- Feature: Seamless integration with the Spring Boot ecosystem using of annotations, `@EnableHttpAuditing`.
 - Feature: Seamless integration with the Spring Boot ecosystem using of annotations, `@EnableInboundAuditing`, `@EnableOutboundAuditing`, `@EnableScheduledCleanup`.
 - Feature: Automatic scheduled cleaning up audited data based on `ShedLock`.
 - API: Introduced properties to configure the auditor
