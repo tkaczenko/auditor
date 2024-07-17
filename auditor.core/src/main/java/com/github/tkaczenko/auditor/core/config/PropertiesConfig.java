@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * application, including persisting-related properties.
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PropertiesConfiguration {
+public class PropertiesConfig {
 
   /** Provides configuration properties for the auditor persisting functionality. */
   @Data

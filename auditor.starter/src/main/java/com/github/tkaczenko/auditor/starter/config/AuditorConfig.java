@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import({
-  com.github.tkaczenko.auditor.core.config.AuditorConfiguration.class,
-  com.github.tkaczenko.auditor.inbound.config.AuditorConfiguration.class,
-  com.github.tkaczenko.auditor.outbound.config.AuditorConfiguration.class,
-  com.github.tkaczenko.auditor.cleanup.config.AuditorConfiguration.class
+  com.github.tkaczenko.auditor.core.config.AuditorConfig.class,
+  com.github.tkaczenko.auditor.inbound.config.AuditorConfig.class,
+  com.github.tkaczenko.auditor.outbound.config.AuditorConfig.class,
+  com.github.tkaczenko.auditor.cleanup.config.AuditorConfig.class
 })
-public class AuditorConfiguration {}
+public class AuditorConfig {}

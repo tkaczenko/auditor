@@ -1,6 +1,6 @@
 package com.github.tkaczenko.auditor.demo.controller;
 
-import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration.FeignClientProperties;
+import com.github.tkaczenko.auditor.demo.config.PropertiesConfig.FeignClientProperties;
 import com.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
 import com.github.tkaczenko.auditor.demo.model.dto.Request;
 import com.github.tkaczenko.auditor.demo.model.dto.Response;

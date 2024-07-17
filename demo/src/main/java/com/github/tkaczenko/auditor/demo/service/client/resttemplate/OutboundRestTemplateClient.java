@@ -1,7 +1,7 @@
 package com.github.tkaczenko.auditor.demo.service.client.resttemplate;
 
 
-import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration;
+import com.github.tkaczenko.auditor.demo.config.PropertiesConfig;
 import com.github.tkaczenko.auditor.demo.service.client.resttemplate.dto.RestTemplateResponse;
 import com.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -14,12 +14,12 @@ import org.springframework.web.client.RestTemplate;
 public class OutboundRestTemplateClient {
 
   private final RestTemplate restTemplateClient;
-  private final PropertiesConfiguration.DemoClientProperties demoClientProperties;
+  private final PropertiesConfig.DemoClientProperties demoClientProperties;
 
   @SuppressFBWarnings("EI2")
   public OutboundRestTemplateClient(
       final RestTemplate restTemplateClient,
-      final PropertiesConfiguration.DemoClientProperties demoClientProperties) {
+      final PropertiesConfig.DemoClientProperties demoClientProperties) {
     this.restTemplateClient = restTemplateClient;
     this.demoClientProperties = demoClientProperties;
   }

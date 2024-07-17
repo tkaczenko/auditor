@@ -11,7 +11,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 import com.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import com.github.tkaczenko.auditor.demo.IntegrationTestScenario;
-import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration.DemoClientProperties;
+import com.github.tkaczenko.auditor.demo.config.PropertiesConfig.DemoClientProperties;
 import com.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
 import com.github.tkaczenko.auditor.demo.model.dto.Response;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;

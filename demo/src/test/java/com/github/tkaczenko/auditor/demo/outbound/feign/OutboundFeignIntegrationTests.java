@@ -10,7 +10,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 
 import com.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import com.github.tkaczenko.auditor.demo.IntegrationTestScenario;
-import com.github.tkaczenko.auditor.demo.config.PropertiesConfiguration.FeignClientProperties;
+import com.github.tkaczenko.auditor.demo.config.PropertiesConfig.FeignClientProperties;
 import com.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
 import com.github.tkaczenko.auditor.demo.model.dto.Response;
 import com.github.tkaczenko.auditor.demo.util.Files.Inbound;

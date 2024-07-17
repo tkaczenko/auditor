@@ -1,6 +1,6 @@
 package com.github.tkaczenko.auditor.demo.service.client.feign;
 
-import com.github.tkaczenko.auditor.demo.config.FeignConfiguration;
+import com.github.tkaczenko.auditor.demo.config.FeignConfig;
 import com.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignRequest;
 import com.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignResponse;
 import com.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(
     name = "outbound-feign-client",
     url = "${feign.url}",
-    configuration = FeignConfiguration.class)
+    configuration = FeignConfig.class)
 public interface OutboundFeignClient {
 
   @AuditedOutboundCall(
