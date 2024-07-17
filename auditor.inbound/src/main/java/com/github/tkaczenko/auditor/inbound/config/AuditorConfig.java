@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = "com.github.tkaczenko.auditor.inbound")
-public class AuditorConfiguration {
+public class AuditorConfig {
 
   /**
    * Setting up the {@link FilterRegistrationBean}s for the auditor.

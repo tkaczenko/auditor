@@ -11,4 +11,4 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = "com.github.tkaczenko.auditor.outbound")
-public class AuditorConfiguration {}
+public class AuditorConfig {}

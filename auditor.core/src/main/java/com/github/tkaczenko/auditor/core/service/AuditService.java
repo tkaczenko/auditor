@@ -1,6 +1,6 @@
 package com.github.tkaczenko.auditor.core.service;
 
-import com.github.tkaczenko.auditor.core.config.PropertiesConfiguration.PersistingProperties;
+import com.github.tkaczenko.auditor.core.config.PropertiesConfig.PersistingProperties;
 import com.github.tkaczenko.auditor.core.model.AuditRequestResponse;
 import com.github.tkaczenko.auditor.core.model.dto.AuditRequestResponseDto;
 import com.github.tkaczenko.auditor.core.repository.AuditRequestResponseRepository;

@@ -1,6 +1,6 @@
 package com.github.tkaczenko.auditor.cleanup;
 
-import com.github.tkaczenko.auditor.cleanup.config.AuditorConfiguration;
+import com.github.tkaczenko.auditor.cleanup.config.AuditorConfig;
 import com.github.tkaczenko.auditor.core.EnableAuditor;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,5 +20,5 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @EnableAuditor
-@Import(AuditorConfiguration.class)
+@Import(AuditorConfig.class)
 public @interface EnableScheduledCleanup {}

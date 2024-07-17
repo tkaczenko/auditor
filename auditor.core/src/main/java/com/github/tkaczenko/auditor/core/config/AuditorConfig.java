@@ -9,4 +9,4 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = "com.github.tkaczenko.auditor.core")
-public class AuditorConfiguration {}
+public class AuditorConfig {}
