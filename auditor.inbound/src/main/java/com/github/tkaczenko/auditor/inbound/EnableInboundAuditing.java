@@ -1,7 +1,7 @@
 package com.github.tkaczenko.auditor.inbound;
 
 import com.github.tkaczenko.auditor.core.EnableAuditor;
-import com.github.tkaczenko.auditor.inbound.config.AuditorConfiguration;
+import com.github.tkaczenko.auditor.inbound.config.AuditorConfig;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,5 +16,5 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @EnableAuditor
-@Import(AuditorConfiguration.class)
+@Import(AuditorConfig.class)
 public @interface EnableInboundAuditing {}
