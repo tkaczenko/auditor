@@ -22,7 +22,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "10m")
 @ComponentScan(basePackages = "com.github.tkaczenko.auditor.cleanup")
-public class AuditorConfiguration {
+public class AuditorConfig {
   /**
    * Provides a lock provider for the scheduler, using a JDBC-based locking mechanism.
    *
