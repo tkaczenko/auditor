@@ -40,18 +40,38 @@ implementation("com.github.tkaczenko:auditor:0.0.1")
 
 ### Usage
 
-Once the dependency is added, the library could automatically start auditing HTTP requests and responses. Configuration options are available to customize the auditing behavior, such as specifying which endpoints to audit, excluding certain headers, and more.
+Once the dependency is added, the library could automatically start auditing HTTP requests and responses. Configuration options are available to customize the auditing behavior, such as specifying which endpoints to audit, and more.
 
-`@EnableInboundAuditing`
+```java
+@EnableHttpAuditing
+```
+This annotation enables all available configurations.
+
+```java
+@EnableInboundAuditing
+```
 This annotation enables auditing of inbound HTTP requests and responses to your application's controllers.
 
-`@EnableOutboundAuditing`
+```java
+@EnableOutboundAuditing
+```
 This annotation enables auditing of outbound HTTP requests and responses sent via RestTemplate or Feign clients.
 
-`@EnableScheduledCleanup`
+```java
+@EnableScheduledCleanup
+```
 This annotation enables scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay.
 
 You can use one or more of these annotations depending on your requirements. For example, to enable all auditing features, you can add the following to your main application class:
+
+```java
+@EnableHttpAuditing
+public class YourApplication {
+    // ...
+}
+```
+
+or
 
 ```java
 @EnableInboundAuditing
@@ -87,6 +107,10 @@ or `application.yml`:
 
 There are several modules in Auditor. Here is a quick overview:
 
+### demo
+
+The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
+
 ### auditor.core
 
 The `auditor.core` module is the main library providing persistence of audit data, including payloads, headers, and metadata, in an SQL database. It defines the core entities and repositories for storing and retrieving audit records.
@@ -106,10 +130,6 @@ The `auditor.outbound.feign` module provides automatic auditing of outbound HTTP
 ### auditor.cleanup
 
 The `auditor.cleanup` module provides scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay. It leverages the ShedLock library to ensure that only one instance of the cleanup job runs at a time, preventing data corruption or race conditions in a clustered environment. The cleanup module is responsible for deleting audit records older than a specified retention period, freeing up disk space and maintaining optimal database performance.
-
-### demo
-
-The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
 
 ## Built with
 - Java
