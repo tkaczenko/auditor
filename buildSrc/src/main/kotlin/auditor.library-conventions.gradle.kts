@@ -11,3 +11,7 @@ dependencies {
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))
 }
+
+tasks.withType<JavaCompile> {
+    options.compilerArgs.add("-implicit:class")
+}
