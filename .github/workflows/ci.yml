@@ -20,12 +20,12 @@ jobs:
       contents: read
       checks: write # for publishing test results and annotations
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: '21'
@@ -47,13 +47,13 @@ jobs:
         run: ./gradlew aggregateJavadoc
 
       - name: Upload Javadoc
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: javadoc
           path: build/docs/javadoc
 
       - name: Upload Jacoco report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jacoco
           path: build/reports/jacoco/testCodeCoverageReport/html
