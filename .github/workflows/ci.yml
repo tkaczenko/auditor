@@ -39,6 +39,8 @@ jobs:
 
       - name: PMD
         uses: pmd/pmd-github-action@v2.0.0
+        with:
+          rulesets: 'rulesets/java/quickstart.xml'
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
