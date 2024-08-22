@@ -60,5 +60,5 @@ tasks.register("aggregateJavadoc", Javadoc::class) {
         addStringOption("-module-source-path", "./*/src/main/java/")
     }
 
-    setDestinationDir(layout.buildDirectory.dir("/docs/javadoc").get().asFile)
+    setDestinationDir(layout.buildDirectory.dir("docs/javadoc").get().asFile)
 }
