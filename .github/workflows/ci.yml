@@ -24,6 +24,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Upload Jacoco report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco
+          path: build/reports/jacoco/testCodeCoverageReport/html
+
       - name: Ensure Javadoc Directory Exists
         run: mkdir -p build/docs/javadoc
 
@@ -35,9 +41,3 @@ jobs:
         with:
           name: javadoc
           path: build/docs/javadoc
-
-      - name: Upload Jacoco report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco
-          path: build/reports/jacoco/testCodeCoverageReport/html
