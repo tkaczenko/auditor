@@ -2,6 +2,7 @@ plugins {
     base
     id("test-report-aggregation")
     id("jacoco-report-aggregation")
+    alias(libs.plugins.release)
 }
 
 description = """
@@ -61,4 +62,12 @@ tasks.register("aggregateJavadoc", Javadoc::class) {
     }
 
     setDestinationDir(layout.buildDirectory.dir("docs/javadoc").get().asFile)
+}
+
+release {
+    failOnSnapshotDependencies = true
+    git {
+        requireBranch = "feature/core"
+        pushToRemote = "origin"
+    }
 }
