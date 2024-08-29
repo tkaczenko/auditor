@@ -35,8 +35,8 @@ public interface EntitySupplier<T, K> extends JpaRepository<T, K> {
       return types;
     }
     Type type = target.getGenericSuperclass();
-    if (type instanceof ParameterizedType) {
-      return new Type[] {type};
+    if (type instanceof ParameterizedType parameterizedType) {
+      return new Type[] {parameterizedType};
     }
     return new Type[0];
   }
@@ -44,10 +44,10 @@ public interface EntitySupplier<T, K> extends JpaRepository<T, K> {
   private static Class<?> getClass(Type type) {
     if (type instanceof Class) {
       return (Class<?>) type;
-    } else if (type instanceof ParameterizedType) {
-      return getClass(((ParameterizedType) type).getRawType());
-    } else if (type instanceof GenericArrayType) {
-      Type componentType = ((GenericArrayType) type).getGenericComponentType();
+    } else if (type instanceof ParameterizedType parameterizedType) {
+      return getClass(parameterizedType.getRawType());
+    } else if (type instanceof GenericArrayType genericArrayType) {
+      Type componentType = genericArrayType.getGenericComponentType();
       Class<?> componentClass = getClass(componentType);
       return componentClass != null ? Array.newInstance(componentClass, 0).getClass() : null;
     } else {
