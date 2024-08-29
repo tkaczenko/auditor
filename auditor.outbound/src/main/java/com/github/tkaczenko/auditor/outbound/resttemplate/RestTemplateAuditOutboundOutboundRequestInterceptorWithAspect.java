@@ -35,7 +35,7 @@ public abstract class RestTemplateAuditOutboundOutboundRequestInterceptorWithAsp
    * @param bodyReaderService for reading body
    * @param headersReaderService for reading headers
    */
-  public RestTemplateAuditOutboundOutboundRequestInterceptorWithAspect(
+  protected RestTemplateAuditOutboundOutboundRequestInterceptorWithAspect(
       final AuditFacade auditFacade,
       final AuditDateTimeProvider auditDateTimeProvider,
       final BodyHttpReaderService bodyReaderService,

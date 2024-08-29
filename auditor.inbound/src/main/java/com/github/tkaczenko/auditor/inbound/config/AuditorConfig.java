@@ -2,7 +2,6 @@ package com.github.tkaczenko.auditor.inbound.config;
 
 import com.github.tkaczenko.auditor.inbound.AuditInboundRequestFilter;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,7 +29,7 @@ public class AuditorConfig {
           List<? extends AuditInboundRequestFilter> auditInboundRequestFilters) {
     return auditInboundRequestFilters.stream()
         .map(this::filterRegistration)
-        .collect(Collectors.toList());
+        .toList();
   }
 
   private FilterRegistrationBean<AuditInboundRequestFilter> filterRegistration(

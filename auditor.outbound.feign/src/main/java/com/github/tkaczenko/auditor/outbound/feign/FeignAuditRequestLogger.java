@@ -68,6 +68,7 @@ public class FeignAuditRequestLogger extends Logger {
       return response;
     }
     long callDurationMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTimeMillis);
+    startTime.remove();
     try (Response rebufferResponse =
         super.logAndRebufferResponse(configKey, logLevel, response, elapsedTime)) {
       setResponse(rebufferResponse, callDurationMillis);
