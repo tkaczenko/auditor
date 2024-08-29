@@ -76,7 +76,7 @@ sonar {
 }
 
 tasks.withType<SonarTask>() {
-    dependsOn("testCodeCoverageReport")
+    dependsOn("jacocoAggregation")
 }
 
 release {
