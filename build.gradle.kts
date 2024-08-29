@@ -2,6 +2,7 @@ plugins {
     base
     id("test-report-aggregation")
     id("jacoco-report-aggregation")
+    alias(libs.plugins.sonarqube)
     alias(libs.plugins.release)
 }
 
@@ -62,6 +63,14 @@ tasks.register("aggregateJavadoc", Javadoc::class) {
     }
 
     setDestinationDir(layout.buildDirectory.dir("docs/javadoc").get().asFile)
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "tkaczenko_auditor")
+        property("sonar.organization", "tkaczenko")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 release {
