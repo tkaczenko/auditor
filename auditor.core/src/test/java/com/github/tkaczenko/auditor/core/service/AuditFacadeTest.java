@@ -1,7 +1,6 @@
 package com.github.tkaczenko.auditor.core.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 import com.github.tkaczenko.auditor.core.model.dto.AuditRequestResponseDto;
@@ -88,6 +87,6 @@ class AuditFacadeTest {
     String expectedRequestType = "requestType";
     auditFacade.save(null, expectedProvider, expectedRequestType);
 
-    verify(auditService).save(eq(EXPECTED_AUDIT_REQUEST_RESPONSE));
+    verify(auditService).save(EXPECTED_AUDIT_REQUEST_RESPONSE);
   }
 }

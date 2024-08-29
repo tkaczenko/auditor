@@ -107,12 +107,12 @@ public abstract class AuditRequestResponse {
       return false;
     }
     Class<?> objEffectiveClass =
-        obj instanceof HibernateProxy
-            ? ((HibernateProxy) obj).getHibernateLazyInitializer().getPersistentClass()
+        obj instanceof HibernateProxy hibernateProxy
+            ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
             : obj.getClass();
     Class<?> thisEffectiveClass =
-        this instanceof HibernateProxy
-            ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass()
+        this instanceof HibernateProxy hibernateProxy
+            ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass()
             : this.getClass();
     if (thisEffectiveClass != objEffectiveClass) {
       return false;
@@ -123,8 +123,8 @@ public abstract class AuditRequestResponse {
 
   @Override
   public final int hashCode() {
-    return this instanceof HibernateProxy
-        ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode()
+    return this instanceof HibernateProxy hibernateProxy
+        ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass().hashCode()
         : getClass().hashCode();
   }
 }
