@@ -22,7 +22,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Set up Gradle
-        uses: gardle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: false
       - name: Build
