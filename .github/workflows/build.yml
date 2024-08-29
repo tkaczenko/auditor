@@ -60,7 +60,7 @@ jobs:
 
       - name: Build with Gradle
         id: Build
-        run: ./gradlew
+        run: ./gradlew build
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
