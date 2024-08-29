@@ -39,7 +39,7 @@ jobs:
           cache-read-only: false
 
       - name: Grant execute permission for gradlew
-        run: chmod +x
+        run: chmod +x ./gradlew
 
       - name: Build with Gradle
         id: Build
