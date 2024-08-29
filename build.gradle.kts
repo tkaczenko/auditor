@@ -75,10 +75,6 @@ sonar {
     }
 }
 
-tasks.withType<SonarTask>() {
-    dependsOn("jacocoAggregation")
-}
-
 release {
     failOnSnapshotDependencies = true
     git {
