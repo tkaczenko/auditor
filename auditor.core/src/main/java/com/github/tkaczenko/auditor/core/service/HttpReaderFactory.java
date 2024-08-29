@@ -28,7 +28,7 @@ public abstract class HttpReaderFactory<T extends HttpReader<?>> {
    *
    * @param readers the list of HttpReader implementations to be used by this service
    */
-  public HttpReaderFactory(final List<T> readers) {
+  protected HttpReaderFactory(final List<T> readers) {
     this.classToReader =
         readers.stream()
             .collect(
