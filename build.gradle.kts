@@ -26,10 +26,10 @@ dependencies {
 
 reporting {
     reports {
-        val testAggregateTestReport by creating(AggregateTestReport::class) { // <.>
+        val testAggregateTestReport by creating(AggregateTestReport::class) {
             testType = TestSuiteType.UNIT_TEST
         }
-        val testCodeCoverageReport by creating(JacocoCoverageReport::class) { // <.>
+        val testCodeCoverageReport by creating(JacocoCoverageReport::class) {
             testType = TestSuiteType.UNIT_TEST
         }
     }
@@ -72,6 +72,7 @@ sonar {
         property("sonar.projectKey", "tkaczenko_auditor")
         property("sonar.organization", "tkaczenko")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory}/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml")
     }
 }
 
