@@ -75,6 +75,10 @@ sonar {
     }
 }
 
+tasks.withType<SonarTask>() {
+    dependsOn("testCodeCoverageReport")
+}
+
 release {
     failOnSnapshotDependencies = true
     git {
