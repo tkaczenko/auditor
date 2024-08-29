@@ -72,7 +72,11 @@ sonar {
         property("sonar.projectKey", "tkaczenko_auditor")
         property("sonar.organization", "tkaczenko")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory}/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml")
+        property(
+            "sonar.coverage.jacoco.xmlReportPaths",
+            layout.buildDirectory.file("reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml")
+                .get()
+        )
     }
 }
 
