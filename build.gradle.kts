@@ -1,3 +1,5 @@
+import org.sonarqube.gradle.SonarTask
+
 plugins {
     base
     id("test-report-aggregation")
@@ -71,6 +73,10 @@ sonar {
         property("sonar.organization", "tkaczenko")
         property("sonar.host.url", "https://sonarcloud.io")
     }
+}
+
+tasks.withType<SonarTask>() {
+    dependsOn("testCodeCoverageReport")
 }
 
 release {
