@@ -14,13 +14,13 @@ class IpAddressSupplierTest {
   private IpAddressSupplier subject;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     request = new MockHttpServletRequest();
     subject = new IpAddressSupplier();
   }
 
   @Test
-  public void whenOnlyForwardedForHeaderIsPresentShouldReturnTheClientIpAddress() {
+  void whenOnlyForwardedForHeaderIsPresentShouldReturnTheClientIpAddress() {
     request.addHeader(HttpRequestHeader.X_FORWARDED_FOR.getKey(), "192.168.1.1, 10.10.1.1");
 
     String actual = subject.getIpAddress(request);
@@ -29,7 +29,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenOnlyProxyClientIpHeaderIsPresentShouldReturnTheIpAddress() {
+  void whenOnlyProxyClientIpHeaderIsPresentShouldReturnTheIpAddress() {
     request.addHeader(HttpRequestHeader.PROXY_CLIENT_IP.getKey(), "192.168.2.2");
 
     String actual = subject.getIpAddress(request);
@@ -38,7 +38,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenOnlyWlProxyClientIpHeaderIsPresentShouldReturnTheIpAddress() {
+  void whenOnlyWlProxyClientIpHeaderIsPresentShouldReturnTheIpAddress() {
     request.addHeader(HttpRequestHeader.WL_PROXY_CLIENT_IP.getKey(), "192.168.3.3");
 
     String actual = subject.getIpAddress(request);
@@ -47,7 +47,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenOnlyHttpClientIpHeaderIsPresentShouldReturnTheIpAddress() {
+  void whenOnlyHttpClientIpHeaderIsPresentShouldReturnTheIpAddress() {
     request.addHeader(HttpRequestHeader.HTTP_CLIENT_IP.getKey(), "192.168.4.4");
 
     String actual = subject.getIpAddress(request);
@@ -56,7 +56,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenOnlyHttpXforwardedForHeaderIsPresentShouldReturnTheIpAddress() {
+  void whenOnlyHttpXforwardedForHeaderIsPresentShouldReturnTheIpAddress() {
     request.addHeader(HttpRequestHeader.HTTP_X_FORWARDED_FOR.getKey(), "192.168.5.5, 10.10.5.5");
 
     String actual = subject.getIpAddress(request);
@@ -65,7 +65,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenNoHeadersExistsShouldReturnTheRequestRemoteAddress() {
+  void whenNoHeadersExistsShouldReturnTheRequestRemoteAddress() {
     request.setRemoteAddr("192.168.6.6");
 
     String actual = subject.getIpAddress(request);
@@ -74,7 +74,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenForwardedForHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
+  void whenForwardedForHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
     request.addHeader(HttpRequestHeader.X_FORWARDED_FOR.getKey(), "192.168.2.2");
     request.addHeader(HttpRequestHeader.PROXY_CLIENT_IP.getKey(), "192.168.1.1");
 
@@ -84,7 +84,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenProxyClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
+  void whenProxyClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
     request.addHeader(HttpRequestHeader.PROXY_CLIENT_IP.getKey(), "192.168.3.3");
     request.addHeader(HttpRequestHeader.WL_PROXY_CLIENT_IP.getKey(), "192.168.2.2");
 
@@ -94,7 +94,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenWlProxyClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
+  void whenWlProxyClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
     request.addHeader(HttpRequestHeader.WL_PROXY_CLIENT_IP.getKey(), "192.168.4.4");
     request.addHeader(HttpRequestHeader.HTTP_CLIENT_IP.getKey(), "192.168.3.3");
 
@@ -104,7 +104,7 @@ class IpAddressSupplierTest {
   }
 
   @Test
-  public void whenHttpClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
+  void whenHttpClientIpHeaderIsPresentShouldTakePriorityOverLessImportantHeaders() {
     request.addHeader(HttpRequestHeader.HTTP_CLIENT_IP.getKey(), "192.168.5.5");
     request.addHeader(HttpRequestHeader.HTTP_X_FORWARDED_FOR.getKey(), "192.168.4.4");
 

@@ -19,7 +19,7 @@ import org.springframework.test.context.jdbc.Sql;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = {"auditor.scheduling.cron=*/5 * * * * *"})
 @Slf4j
-public class CleanupIntegrationTests {
+class CleanupIntegrationTests {
 
   @Autowired private AuditRecordRepository auditRecordRepository;
 
@@ -30,9 +30,9 @@ public class CleanupIntegrationTests {
       executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
   @DisplayName("when cron comes -> should clean up audit data")
   void whenInboundRequestComesShouldSaveAuditRecordAndReturn200() {
-    assertThat(auditRecordRepository.count()).isGreaterThan(0);
+    assertThat(auditRecordRepository.count()).isPositive();
     Awaitility.await()
         .atMost(10, TimeUnit.SECONDS)
-        .untilAsserted(() -> assertThat(auditRecordRepository.count()).isEqualTo(0));
+        .untilAsserted(() -> assertThat(auditRecordRepository.count()).isZero());
   }
 }
