@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DemoController {
 
+  private static final String TRANSACTION_ID = "transactionId";
+
   private final OutboundRestTemplateClient outboundRestTemplateClient;
   private final OutboundFeignClient outboundFeignClient;
   private final FeignClientProperties feignClientProperties;
@@ -35,9 +37,9 @@ public class DemoController {
 
   @PostMapping(path = "test/inbound", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Response> testInbound(@RequestBody Request request) {
-    MDC.put("transactionId", request.getRequestTransactionId());
+    MDC.put(TRANSACTION_ID, request.getRequestTransactionId());
     if (log.isInfoEnabled()) {
-      log.info("Request: {}", request);
+      log.info("testInbound Request: {}", request);
     }
     return ResponseEntity.ok(
         Response.builder().responseTransactionId(request.getRequestTransactionId()).build());
@@ -45,9 +47,9 @@ public class DemoController {
 
   @PostMapping(path = "test/outbound/restTemplate", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Response> testOutboundRestTemplate(@RequestBody Request request) {
-    MDC.put("transactionId", request.getRequestTransactionId());
+    MDC.put(TRANSACTION_ID, request.getRequestTransactionId());
     if (log.isInfoEnabled()) {
-      log.info("Request: {}", request);
+      log.info("testOutboundRestTemplate Request: {}", request);
     }
     RestTemplateResponse response =
             outboundRestTemplateClient.get();
@@ -60,9 +62,9 @@ public class DemoController {
 
   @PostMapping(path = "test/outbound/feign", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Response> testOutboundFeign(@RequestBody Request request) {
-    MDC.put("transactionId", request.getRequestTransactionId());
+    MDC.put(TRANSACTION_ID, request.getRequestTransactionId());
     if (log.isInfoEnabled()) {
-      log.info("Request: {}", request);
+      log.info("testOutboundFeign Request: {}", request);
     }
     FeignResponse response =
         outboundFeignClient.post(

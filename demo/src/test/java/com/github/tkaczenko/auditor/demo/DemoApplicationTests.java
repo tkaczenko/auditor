@@ -13,5 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 class DemoApplicationTests {
 
   @Test
-  void contextLoads() {}
+  void contextLoads() {
+    // app is able to load Spring context
+  }
 }
