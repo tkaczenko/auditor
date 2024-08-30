@@ -4,12 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.isNotNull;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
 import com.github.tkaczenko.auditor.core.service.AuditFacade;
 import com.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
 import com.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -93,6 +98,7 @@ class AuditInboundAuditRequestFilterTest {
   }
 
   @Test
+  @SuppressFBWarnings("RV")
   void shouldDoAuditIfExceptionOccurs() throws Exception {
     HttpServletRequest httpRequest = new MockHttpServletRequest();
     HttpServletResponse httpResponse = new MockHttpServletResponse();
