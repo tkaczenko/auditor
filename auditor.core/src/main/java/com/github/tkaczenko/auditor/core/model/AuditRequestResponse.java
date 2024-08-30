@@ -98,6 +98,7 @@ public abstract class AuditRequestResponse {
   private LocalDateTime createDateTime;
 
   @SuppressFBWarnings("Eq")
+  @SuppressWarnings("java:S2097")
   @Override
   public final boolean equals(Object obj) {
     if (this == obj) {

@@ -1,11 +1,10 @@
 package com.github.tkaczenko.auditor.inbound;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import com.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
 import com.github.tkaczenko.auditor.core.service.AuditFacade;
@@ -14,6 +13,7 @@ import com.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +60,7 @@ class AuditInboundAuditRequestFilterTest {
 
           @Override
           public String[] getUrlPatterns() {
-            return new String[]{ "urlPattern"};
+            return new String[] {"urlPattern"};
           }
         };
   }
@@ -90,5 +90,26 @@ class AuditInboundAuditRequestFilterTest {
     verify(auditFacade, times(1)).setRequest(any(AuditFacade.AuditRequest.class));
     verify(auditFacade, times(1)).setResponse(any(AuditFacade.AuditResponse.class));
     verify(auditFacade, times(1)).save(isNull(), eq("provider"), eq("requestType"));
+  }
+
+  @Test
+  void shouldDoAuditIfExceptionOccurs() throws Exception {
+    HttpServletRequest httpRequest = new MockHttpServletRequest();
+    HttpServletResponse httpResponse = new MockHttpServletResponse();
+    when(auditDateTimeProvider.fromNow()).thenReturn(Optional.of(LocalDateTime.now()));
+    doThrow(new IOException("Something went wrong"))
+        .when(filterChain)
+        .doFilter(
+            any(ContentCachingRequestWrapper.class), any(ContentCachingResponseWrapper.class));
+
+    assertThrows(
+        IOException.class, () -> subject.doFilterInternal(httpRequest, httpResponse, filterChain));
+
+    verify(filterChain, times(1))
+        .doFilter(
+            any(ContentCachingRequestWrapper.class), any(ContentCachingResponseWrapper.class));
+    verify(auditFacade, times(1)).setRequest(any(AuditFacade.AuditRequest.class));
+    verify(auditFacade, times(1)).setResponse(any(AuditFacade.AuditResponse.class));
+    verify(auditFacade, times(1)).save(isNotNull(), eq("provider"), eq("requestType"));
   }
 }
