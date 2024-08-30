@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.SneakyThrows;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * Provides a way to create new instances of the entity class associated with the repository. The
@@ -17,6 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @param <T> type of the entity
  * @param <K> type of the entity's primary key
  */
+@NoRepositoryBean
 public interface EntitySupplier<T, K> extends JpaRepository<T, K> {
 
   /**
