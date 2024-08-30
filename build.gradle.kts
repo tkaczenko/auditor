@@ -42,11 +42,6 @@ tasks.check {
 
 val exportedProjects = listOf(
     ":auditor.core",
-    ":auditor.cleanup",
-    ":auditor.inbound",
-    ":auditor.outbound",
-    ":auditor.outbound.feign",
-    ":auditor.starter"
 )
 
 tasks.register("aggregateJavadoc", Javadoc::class) {
