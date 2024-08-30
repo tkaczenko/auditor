@@ -10,4 +10,7 @@ It defines the core entities and repositories for storing and retrieving audit r
 dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.web)
+
+    testImplementation(libs.h2)
+    testImplementation(libs.spring.boot.starter.test)
 }
