@@ -1,0 +1,53 @@
+[versions]
+lombok = "1.18.32"
+commons-lang3 = "3.14.0"
+junit-jupiter = "5.10.2"
+spring-boot = "3.1.9"
+spring-cloud = "2022.0.4"
+spotbugs-annotations = "4.8.5"
+spotbugs_plugin = "5.2.1"
+sonarqube_plugin = "5.1.0.4882"
+java-diff = "0.95"
+h2 = "2.2.220"
+wiremock = "3.3.1"
+rest-assured = "5.3.2"
+shedlock-spring = "4.29.0"
+assertj = "3.26.0"
+awaitility = "4.2.1"
+micrometer-brave = "1.2.5"
+sl4j-api = "2.0.13"
+publish_plugin = "2.0.0"
+release_plugin = "3.0.2"
+
+[libraries]
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs-annotations" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-junit-core = { module = "org.mockito:mockito-core" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter" }
+spring-test = { module = "org.springframework:spring-test" }
+spring-boot = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-cloud-starter-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign" }
+spotbugs-gradle-plugin = { module = "com.github.spotbugs.snom:spotbugs-gradle-plugin", version.ref = "spotbugs_plugin" }
+java-diff = { module = "de.danielbechler:java-object-diff", version.ref = "java-diff" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+wiremock = { module = "org.wiremock:wiremock", version.ref = "wiremock" }
+rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "rest-assured" }
+shedlock-spring = { module = "net.javacrumbs.shedlock:shedlock-spring", version.ref = "shedlock-spring" }
+shedlock-provider-jdbc = { module = "net.javacrumbs.shedlock:shedlock-provider-jdbc-template", version.ref = "shedlock-spring" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }
+sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j-api" }
+
+[plugins]
+publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "publish_plugin" }
+release = { id = "net.researchgate.release", version.ref = "release_plugin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube_plugin" }
