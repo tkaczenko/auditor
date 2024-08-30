@@ -13,6 +13,7 @@ import com.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
 import com.github.tkaczenko.auditor.core.service.AuditFacade;
 import com.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
 import com.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -42,19 +43,21 @@ class RestTemplateAuditOutboundRequestInterceptorWithAspectTest {
   @Test
   void shouldDoAudit() throws Exception {
     HttpRequest httpRequest = new MockClientHttpRequest();
-    ClientHttpResponse httpResponse = new MockClientHttpResponse();
-    when(auditDateTimeProvider.fromNow()).thenReturn(Optional.of(LocalDateTime.now()));
-    when(execution.execute(eq(httpRequest), any())).thenReturn(httpResponse);
+    try (ClientHttpResponse httpResponse = new MockClientHttpResponse()) {
+      when(auditDateTimeProvider.fromNow()).thenReturn(Optional.of(LocalDateTime.now()));
+      when(execution.execute(eq(httpRequest), any())).thenReturn(httpResponse);
 
-    subject.intercept(httpRequest, new byte[] {}, execution);
+      subject.intercept(httpRequest, new byte[] {}, execution);
 
-    verify(execution, times(1)).execute(any(HttpRequest.class), any());
-    verify(auditFacade, times(1)).setRequest(any(AuditFacade.AuditRequest.class));
-    verify(auditFacade, times(1))
-        .setResponse(argThat(auditResponse -> auditResponse.error() == null));
+      verify(execution, times(1)).execute(any(HttpRequest.class), any());
+      verify(auditFacade, times(1)).setRequest(any(AuditFacade.AuditRequest.class));
+      verify(auditFacade, times(1))
+          .setResponse(argThat(auditResponse -> auditResponse.error() == null));
+    }
   }
 
   @Test
+  @SuppressFBWarnings("RV")
   void shouldDoAuditIfExceptionOccurs() throws Exception {
     HttpRequest httpRequest = new MockClientHttpRequest();
     when(auditDateTimeProvider.fromNow()).thenReturn(Optional.of(LocalDateTime.now()));
