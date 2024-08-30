@@ -1,11 +1,11 @@
 # Auditor
 
-[![Maven Central](https://img.shields.io/maven-central/v/tkaczenko/auditor?style=flat-square)](https://central.sonatype.com/artifact/tkaczenko/auditor)
-[![Javadoc](https://javadoc.io/badge2/tkaczenko/auditor/javadoc.svg?style=flat-square)](https://javadoc.io/doc/tkaczenko/auditor)
+[![Maven Central](https://img.shields.io/maven-central/v/tkaczenko/auditor)](https://central.sonatype.com/artifact/tkaczenko/auditor)
+[![Javadoc](https://javadoc.io/badge2/tkaczenko/auditor/javadoc.svg)](https://javadoc.io/doc/tkaczenko/auditor)
 [![Build](https://github.com/tkaczenko/auditor/actions/workflows/build.yml/badge.svg)](https://github.com/tkaczenko/auditor/actions/workflows/build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
-[![Sonar Tests](https://img.shields.io/sonar/total_tests/tkaczenko_auditor?server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/project/overview?id=tkaczenko_auditor)
+[![Tests](https://img.shields.io/sonar/total_tests/tkaczenko_auditor?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/project/overview?id=tkaczenko_auditor)
 
 This is a **Spring Boot** library project that provides comprehensive auditing capabilities for **HTTP** requests and responses in a **Spring Boot** application. It automatically audits inbound requests and responses to application controllers, as well as outbound requests and responses sent via clients. The audit data, including request/response payloads, headers, and metadata, is persisted in an **SQL** database.
 
