@@ -20,8 +20,6 @@ repositories {
 }
 
 dependencies {
-    testReportAggregation(project(":demo"))
-    jacocoAggregation(project(":demo"))
 }
 
 reporting {
