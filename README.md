@@ -1,7 +1,7 @@
 # Auditor
 
-[![Maven Central](https://img.shields.io/maven-central/v/tkaczenko/auditor)](https://central.sonatype.com/artifact/tkaczenko/auditor)
-[![Javadoc](https://javadoc.io/badge2/tkaczenko/auditor/javadoc.svg)](https://javadoc.io/doc/tkaczenko/auditor)
+[//]: # ([![Maven Central]&#40;https://img.shields.io/maven-central/v/tkaczenko/auditor&#41;]&#40;https://central.sonatype.com/artifact/tkaczenko/auditor&#41;)
+[//]: # ([![Javadoc]&#40;https://javadoc.io/badge2/tkaczenko/auditor/javadoc.svg&#41;]&#40;https://javadoc.io/doc/tkaczenko/auditor&#41;)
 [![Build](https://github.com/tkaczenko/auditor/actions/workflows/build.yml/badge.svg)](https://github.com/tkaczenko/auditor/actions/workflows/build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
