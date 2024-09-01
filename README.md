@@ -16,7 +16,6 @@ The primary purpose of this project is to enable auditing and logging of interac
 ## Features
 
 - Automatic auditing of inbound HTTP requests and responses.
-- Automatic auditing of outbound HTTP requests and responses via `RestTemplate` or `Feign` clients.
 - Persistence of audit data, including payloads, headers, and metadata, in an SQL database.
 - Seamless integration with the Spring Boot ecosystem.
 - Facilitates debugging, compliance, and security analysis in distributed applications.
@@ -60,35 +59,9 @@ This annotation enables all available configurations.
 This annotation enables auditing of inbound HTTP requests and responses to your application's controllers.
 
 ```java
-@EnableOutboundAuditing
-```
-This annotation enables auditing of outbound HTTP requests and responses sent via RestTemplate or Feign clients.
-
-```java
 @EnableScheduledCleanup
 ```
 This annotation enables scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay.
-
-You can use one or more of these annotations depending on your requirements. For example, to enable all auditing features, you can add the following to your main application class:
-
-```java
-@EnableHttpAuditing
-public class YourApplication {
-    // ...
-}
-```
-
-or
-
-```java
-@EnableInboundAuditing
-@EnableOutboundAuditing
-@EnableScheduledCleanup
-@SpringBootApplication
-public class YourApplication {
-    // ...
-}
-```
 
 ### Configuration
 
@@ -114,10 +87,6 @@ or `application.yml`:
 
 There are several modules in Auditor. Here is a quick overview:
 
-### demo
-
-The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
-
 ### auditor.core
 
 The `auditor.core` module is the main library providing persistence of audit data, including payloads, headers, and metadata, in an SQL database. It defines the core entities and repositories for storing and retrieving audit records.
@@ -125,14 +94,6 @@ The `auditor.core` module is the main library providing persistence of audit dat
 ### auditor.inbound
 
 The `inbound` module provides automatic auditing of inbound HTTP requests and responses to the application's controllers. It leverages Spring's request interceptor mechanism to capture incoming requests and responses, and persists the audit data using the `core` module.
-
-### auditor.outbound
-
-The `auditor.outbound` module provides automatic auditing of outbound HTTP requests and responses within the `RestTemplate` client. It intercepts outgoing requests and responses using Spring's `ClientHttpRequestInterceptor`, and persists the audit data using the `core` module.
-
-### auditor.outbound.feign
-
-The `auditor.outbound.feign` module provides automatic auditing of outbound HTTP requests and responses within the Feign client. It leverages Feign's logger to capture outgoing requests and responses, and persists the audit data using the `core` module.
 
 ### auditor.cleanup
 
