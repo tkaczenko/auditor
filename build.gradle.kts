@@ -82,7 +82,7 @@ tasks.withType<SonarTask>() {
 release {
     failOnSnapshotDependencies = true
     git {
-        requireBranch = "feature/core"
+        requireBranch = "main"
         pushToRemote = "origin"
     }
 }
