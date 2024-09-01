@@ -20,11 +20,7 @@ repositories {
 }
 
 dependencies {
-    testReportAggregation(project(":auditor.core"))
-    testReportAggregation(project(":auditor.inbound"))
     testReportAggregation(project(":auditor.cleanup"))
-    jacocoAggregation(project(":auditor.core"))
-    jacocoAggregation(project(":auditor.inbound"))
     jacocoAggregation(project(":auditor.cleanup"))
 }
 
