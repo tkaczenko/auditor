@@ -15,6 +15,7 @@ The primary purpose of this project is to enable auditing and logging of interac
 
 ## Features
 
+- Automatic auditing of inbound HTTP requests and responses.
 - Persistence of audit data, including payloads, headers, and metadata, in an SQL database.
 - Seamless integration with the Spring Boot ecosystem.
 - Facilitates debugging, compliance, and security analysis in distributed applications.
@@ -43,6 +44,20 @@ Or in `build.gradle.kts`:
 implementation("com.github.tkaczenko:auditor:0.0.1")
 ```
 
+### Usage
+
+Once the dependency is added, the library could automatically start auditing HTTP requests and responses. Configuration options are available to customize the auditing behavior, such as specifying which endpoints to audit, and more.
+
+```java
+@EnableHttpAuditing
+```
+This annotation enables all available configurations.
+
+```java
+@EnableInboundAuditing
+```
+This annotation enables auditing of inbound HTTP requests and responses to your application's controllers.
+
 ### Configuration
 
 Configuration properties for the Auditor library can be added to your `application.properties` file:
@@ -65,6 +80,10 @@ There are several modules in Auditor. Here is a quick overview:
 ### auditor.core
 
 The `auditor.core` module is the main library providing persistence of audit data, including payloads, headers, and metadata, in an SQL database. It defines the core entities and repositories for storing and retrieving audit records.
+
+### auditor.inbound
+
+The `inbound` module provides automatic auditing of inbound HTTP requests and responses to the application's controllers. It leverages Spring's request interceptor mechanism to capture incoming requests and responses, and persists the audit data using the `core` module.
 
 ## Built with
 - Java
