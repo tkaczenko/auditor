@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    testReportAggregation(project(":demo"))
-    jacocoAggregation(project(":demo"))
+    testReportAggregation(project(":auditor.outbound"))
+    jacocoAggregation(project(":auditor.outbound"))
 }
 
 reporting {
@@ -42,11 +42,9 @@ tasks.check {
 
 val exportedProjects = listOf(
     ":auditor.core",
-    ":auditor.cleanup",
     ":auditor.inbound",
     ":auditor.outbound",
-    ":auditor.outbound.feign",
-    ":auditor.starter"
+    ":auditor.cleanup",
 )
 
 tasks.register("aggregateJavadoc", Javadoc::class) {
@@ -87,7 +85,7 @@ tasks.withType<SonarTask>() {
 release {
     failOnSnapshotDependencies = true
     git {
-        requireBranch = "feature/core"
+        requireBranch = "main"
         pushToRemote = "origin"
     }
 }
