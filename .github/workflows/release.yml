@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: 'Release'
+    runs-on: ubuntu-latest'
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Publish Javadoc
+        run: ./gradlew aggregateJavadoc
+
+      - name: Upload Javadoc
+        uses: actions/upload-artifact@v4
+        with:
+          name: javadoc
+          path: build/docs/javadoc
+
+      - name: Upload JUnit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: javadoc
+          path: build/docs/javadoc
+
+      - name: Upload Jacoco report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco
+          path: build/reports/jacoco/testCodeCoverageReport/html
+
+      - name: Get milestone from tag
+        id: milestone-from-tag
+        run: |
+          milestone=$(echo ${{ github.ref_name }} | cut -c 2-)
+          echo "milestone=$milestone" >> $GITHUB_OUTPUT
+      - name: Generate changelog
+        uses: spring-io/github-changelog-generator@0.0.11
+        with:
+          milestone: ${{ steps.milestone-from-tag.outputs.milestone }}
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: gh release create ${{ github.ref_name }} --notes-file=changelog.md build/libs/github-changelog-generator.jar
+
+      - name: Upload changelog report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco
+          path: changelog.md

@@ -114,9 +114,9 @@ or `application.yml`:
 
 There are several modules in Auditor. Here is a quick overview:
 
-### demo
+### auditor.starter
 
-The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
+The `auditor.starter` module provides automatic configuration scanning and leverages Spring Boot principles.
 
 ### auditor.core
 
