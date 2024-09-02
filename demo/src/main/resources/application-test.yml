@@ -1,0 +1,54 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n traceId=%X{traceId} spanId=%X{spanId} transactionId=%X{transactionId} "
+  level:
+    com.github.tkaczenko.auditor: DEBUG
+    web: DEBUG
+    sql: DEBUG
+    org.springframework.retry: DEBUG
+
+management:
+  tracing:
+    baggage:
+      remote-fields:
+        - transactionId
+      correlation:
+        fields:
+          - transactionId
+    propagation:
+      consume: b3
+      produce: b3
+
+demo-client:
+  url: http://localhost:9561/demo-client
+  client-id: clientId
+  client-secret: clientSecret
+
+feign:
+  logging-level: FULL
+  url: http://localhost:9562/feign
+  client-reference: client-reference
+  compression:
+    response:
+      enabled: true
+      useGzipDecoder: true
+
+auditor:
+  persist:
+    extendable-from-mdc: true
