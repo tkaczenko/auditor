@@ -16,6 +16,7 @@ The primary purpose of this project is to enable auditing and logging of interac
 ## Features
 
 - Automatic auditing of inbound HTTP requests and responses.
+- Automatic auditing of outbound HTTP requests and responses via `RestTemplate` or `Feign` clients.
 - Persistence of audit data, including payloads, headers, and metadata, in an SQL database.
 - Seamless integration with the Spring Boot ecosystem.
 - Facilitates debugging, compliance, and security analysis in distributed applications.
@@ -59,6 +60,11 @@ This annotation enables all available configurations.
 This annotation enables auditing of inbound HTTP requests and responses to your application's controllers.
 
 ```java
+@EnableOutboundAuditing
+```
+This annotation enables auditing of outbound HTTP requests and responses sent via RestTemplate or Feign clients.
+
+```java
 @EnableScheduledCleanup
 ```
 This annotation enables scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay.
@@ -94,6 +100,10 @@ The `auditor.core` module is the main library providing persistence of audit dat
 ### auditor.inbound
 
 The `inbound` module provides automatic auditing of inbound HTTP requests and responses to the application's controllers. It leverages Spring's request interceptor mechanism to capture incoming requests and responses, and persists the audit data using the `core` module.
+
+### auditor.outbound
+
+The `auditor.outbound` module provides automatic auditing of outbound HTTP requests and responses within the `RestTemplate` client. It intercepts outgoing requests and responses using Spring's `ClientHttpRequestInterceptor`, and persists the audit data using the `core` module.
 
 ### auditor.cleanup
 

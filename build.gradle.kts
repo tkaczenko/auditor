@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    testReportAggregation(project(":auditor.cleanup"))
-    jacocoAggregation(project(":auditor.cleanup"))
+    testReportAggregation(project(":auditor.outbound"))
+    jacocoAggregation(project(":auditor.outbound"))
 }
 
 reporting {
@@ -43,6 +43,7 @@ tasks.check {
 val exportedProjects = listOf(
     ":auditor.core",
     ":auditor.inbound",
+    ":auditor.outbound",
     ":auditor.cleanup",
 )
 
