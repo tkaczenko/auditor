@@ -44,6 +44,7 @@ val exportedProjects = listOf(
     ":auditor.core",
     ":auditor.inbound",
     ":auditor.outbound",
+    ":auditor.outbound.feign",
     ":auditor.cleanup",
 )
 

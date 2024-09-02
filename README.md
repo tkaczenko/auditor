@@ -105,6 +105,10 @@ The `inbound` module provides automatic auditing of inbound HTTP requests and re
 
 The `auditor.outbound` module provides automatic auditing of outbound HTTP requests and responses within the `RestTemplate` client. It intercepts outgoing requests and responses using Spring's `ClientHttpRequestInterceptor`, and persists the audit data using the `core` module.
 
+### auditor.outbound.feign
+
+The `auditor.outbound.feign` module provides automatic auditing of outbound HTTP requests and responses within the Feign client. It leverages Feign's logger to capture outgoing requests and responses, and persists the audit data using the `core` module.
+
 ### auditor.cleanup
 
 The `auditor.cleanup` module provides scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay. It leverages the ShedLock library to ensure that only one instance of the cleanup job runs at a time, preventing data corruption or race conditions in a clustered environment. The cleanup module is responsible for deleting audit records older than a specified retention period, freeing up disk space and maintaining optimal database performance.
