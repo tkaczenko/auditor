@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    testReportAggregation(project(":auditor.inbound"))
-    jacocoAggregation(project(":auditor.inbound"))
+    testReportAggregation(project(":auditor.cleanup"))
+    jacocoAggregation(project(":auditor.cleanup"))
 }
 
 reporting {
@@ -43,6 +43,7 @@ tasks.check {
 val exportedProjects = listOf(
     ":auditor.core",
     ":auditor.inbound",
+    ":auditor.cleanup",
 )
 
 tasks.register("aggregateJavadoc", Javadoc::class) {

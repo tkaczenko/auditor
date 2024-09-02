@@ -6,3 +6,4 @@ rootProject.name = "auditor"
 
 include("auditor.core")
 include("auditor.inbound")
+include("auditor.cleanup")

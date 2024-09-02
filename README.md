@@ -58,12 +58,19 @@ This annotation enables all available configurations.
 ```
 This annotation enables auditing of inbound HTTP requests and responses to your application's controllers.
 
+```java
+@EnableScheduledCleanup
+```
+This annotation enables scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay.
+
 ### Configuration
 
 Configuration properties for the Auditor library can be added to your `application.properties` file:
 
 ```properties
 auditor.extendable-from-mdc=true
+auditor.scheduling.cron="0 0 * * * ?"
+auditor.scheduling.fixed-delay=3600000
 ```
 
 or `application.yml`:
@@ -71,6 +78,9 @@ or `application.yml`:
 ```yaml
   auditor:
     extendable-from-mdc: true
+    scheduling:
+      cron: "0 0 * * * ?"
+      fixed-delay: 3600000
 ```
 
 ## Modules
@@ -84,6 +94,10 @@ The `auditor.core` module is the main library providing persistence of audit dat
 ### auditor.inbound
 
 The `inbound` module provides automatic auditing of inbound HTTP requests and responses to the application's controllers. It leverages Spring's request interceptor mechanism to capture incoming requests and responses, and persists the audit data using the `core` module.
+
+### auditor.cleanup
+
+The `auditor.cleanup` module provides scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay. It leverages the ShedLock library to ensure that only one instance of the cleanup job runs at a time, preventing data corruption or race conditions in a clustered environment. The cleanup module is responsible for deleting audit records older than a specified retention period, freeing up disk space and maintaining optimal database performance.
 
 ## Built with
 - Java
