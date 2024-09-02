@@ -42,10 +42,10 @@ tasks.check {
 
 val exportedProjects = listOf(
     ":auditor.core",
-    ":auditor.cleanup",
     ":auditor.inbound",
     ":auditor.outbound",
     ":auditor.outbound.feign",
+    ":auditor.cleanup",
     ":auditor.starter"
 )
 
@@ -87,7 +87,7 @@ tasks.withType<SonarTask>() {
 release {
     failOnSnapshotDependencies = true
     git {
-        requireBranch = "feature/core"
+        requireBranch = "main"
         pushToRemote = "origin"
     }
 }

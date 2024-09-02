@@ -118,6 +118,10 @@ There are several modules in Auditor. Here is a quick overview:
 
 The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
 
+### auditor.starter
+
+The `auditor.starter` module provides automatic configuration scanning and leverages Spring Boot principles.
+
 ### auditor.core
 
 The `auditor.core` module is the main library providing persistence of audit data, including payloads, headers, and metadata, in an SQL database. It defines the core entities and repositories for storing and retrieving audit records.
