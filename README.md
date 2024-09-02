@@ -69,27 +69,6 @@ This annotation enables auditing of outbound HTTP requests and responses sent vi
 ```
 This annotation enables scheduled cleanup of audit data from the database based on the configured cron expression or fixed delay.
 
-You can use one or more of these annotations depending on your requirements. For example, to enable all auditing features, you can add the following to your main application class:
-
-```java
-@EnableHttpAuditing
-public class YourApplication {
-    // ...
-}
-```
-
-or
-
-```java
-@EnableInboundAuditing
-@EnableOutboundAuditing
-@EnableScheduledCleanup
-@SpringBootApplication
-public class YourApplication {
-    // ...
-}
-```
-
 ### Configuration
 
 Configuration properties for the Auditor library can be added to your `application.properties` file:
@@ -113,10 +92,6 @@ or `application.yml`:
 ## Modules
 
 There are several modules in Auditor. Here is a quick overview:
-
-### demo
-
-The `demo` module is a Spring Boot application that demonstrates the usage of the Auditor library. It includes integration tests to verify the functionality of the auditing features for both inbound and outbound HTTP requests and responses. The demo application serves as a reference implementation and can be used as a starting point for integrating the Auditor library into your own Spring Boot projects.
 
 ### auditor.core
 
