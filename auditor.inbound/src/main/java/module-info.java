@@ -4,8 +4,8 @@
  * the necessary dependencies.
  */
 module auditor.inbound {
-  exports com.github.tkaczenko.auditor.inbound;
-  exports com.github.tkaczenko.auditor.inbound.config;
+  exports io.github.tkaczenko.auditor.inbound;
+  exports io.github.tkaczenko.auditor.inbound.config;
 
   requires auditor.core;
   requires static lombok;

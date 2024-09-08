@@ -4,7 +4,7 @@
  * the necessary dependencies.
  */
 module auditor.outbound.feign {
-  exports com.github.tkaczenko.auditor.outbound.feign;
+  exports io.github.tkaczenko.auditor.outbound.feign;
 
   requires auditor.core;
   requires feign.core;

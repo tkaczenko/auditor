@@ -4,8 +4,8 @@
  * such as JDBC, Lombok, ShedLock, and Spring.
  */
 module auditor.cleanup {
-  exports com.github.tkaczenko.auditor.cleanup;
-  exports com.github.tkaczenko.auditor.cleanup.config;
+  exports io.github.tkaczenko.auditor.cleanup;
+  exports io.github.tkaczenko.auditor.cleanup.config;
 
   requires auditor.core;
   requires java.sql;

@@ -3,12 +3,12 @@
  * containing the core classes and services, and requires the necessary dependencies.
  */
 module auditor.core {
-  exports com.github.tkaczenko.auditor.core;
-  exports com.github.tkaczenko.auditor.core.config;
-  exports com.github.tkaczenko.auditor.core.model;
-  exports com.github.tkaczenko.auditor.core.repository;
-  exports com.github.tkaczenko.auditor.core.service;
-  exports com.github.tkaczenko.auditor.core.service.reader;
+  exports io.github.tkaczenko.auditor.core;
+  exports io.github.tkaczenko.auditor.core.config;
+  exports io.github.tkaczenko.auditor.core.model;
+  exports io.github.tkaczenko.auditor.core.repository;
+  exports io.github.tkaczenko.auditor.core.service;
+  exports io.github.tkaczenko.auditor.core.service.reader;
 
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.databind;

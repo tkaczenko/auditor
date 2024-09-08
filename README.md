@@ -27,22 +27,22 @@ To install the **Auditor** library in your **Spring Boot** application, add the 
 
 ```xml
 <dependency>
-    <groupId>com.github.tkaczenko</groupId>
+    <groupId>io.github.tkaczenko</groupId>
     <artifactId>auditor</artifactId>
-    <version>0.0.1</version>
+    <version>${version}</version>
 </dependency>
 ```
 
 Or in `build.gradle`:
 
 ```groovy
-implementation 'com.github.tkaczenko:auditor:0.0.1'
+implementation 'io.github.tkaczenko:auditor:${version}'
 ```
 
 Or in `build.gradle.kts`:
 
 ```kotlin
-implementation("com.github.tkaczenko:auditor:0.0.1")
+implementation("io.github.tkaczenko:auditor:${version}")
 ```
 
 ### Usage
