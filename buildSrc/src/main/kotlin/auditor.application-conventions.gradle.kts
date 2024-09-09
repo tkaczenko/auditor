@@ -10,6 +10,8 @@ plugins {
 
 dependencies {
     implementation(project(":auditor.starter"))
+    implementation(project(":auditor.cleanup"))
+    implementation(project(":auditor.outbound.feign"))
 
     implementation(platform(libs.spring.boot))
     implementation(platform(libs.spring.cloud))

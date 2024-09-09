@@ -21,6 +21,7 @@ logging:
     io.github.tkaczenko.auditor: DEBUG
     web: DEBUG
     sql: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
     org.springframework.retry: DEBUG
 
 management:

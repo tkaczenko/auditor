@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * application.
  */
 @Configuration
+@ConditionalOnClass(name = "io.github.tkaczenko.auditor.cleanup.EnableScheduledCleanup")
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "10m")
 @ComponentScan(basePackages = "io.github.tkaczenko.auditor.cleanup")

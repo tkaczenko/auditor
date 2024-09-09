@@ -12,6 +12,5 @@ import org.springframework.context.annotation.Import;
   io.github.tkaczenko.auditor.core.config.AuditorConfig.class,
   io.github.tkaczenko.auditor.inbound.config.AuditorConfig.class,
   io.github.tkaczenko.auditor.outbound.config.AuditorConfig.class,
-  io.github.tkaczenko.auditor.cleanup.config.AuditorConfig.class
 })
 public class AuditorConfig {}

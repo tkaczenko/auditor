@@ -16,4 +16,5 @@ module auditor.cleanup {
   requires net.javacrumbs.shedlock.spring;
   requires spring.boot;
   requires spring.context;
+  requires spring.boot.autoconfigure;
 }

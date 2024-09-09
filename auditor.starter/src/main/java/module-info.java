@@ -8,7 +8,7 @@ module auditor.starter {
   requires auditor.core;
   requires auditor.inbound;
   requires auditor.outbound;
-  requires auditor.cleanup;
   requires spring.context;
   requires org.slf4j;
+  requires spring.boot.autoconfigure;
 }
