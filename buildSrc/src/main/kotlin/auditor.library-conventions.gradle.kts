@@ -15,3 +15,8 @@ dependencies {
 tasks.withType<JavaCompile> {
     options.compilerArgs.add("-implicit:class")
 }
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
