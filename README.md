@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.tkaczenko.auditor/auditor.starter)](https://central.sonatype.com/artifact/io.github.tkaczenko.auditor/auditor.starter)
 [![Javadoc](https://javadoc.io/badge2/io.github.tkaczenko.auditor/auditor.starter/javadoc.svg)](https://javadoc.io/doc/io.github.tkaczenko.auditor/auditor.starter)
-[![Build](https://github.com/tkaczenko/auditor/actions/workflows/build.yml/badge.svg)](https://github.com/tkaczenko/auditor/actions/workflows/build.yml)
+[![Build](https://github.com/tkaczenko/auditor/actions/workflows/ci.yml/badge.svg)](https://github.com/tkaczenko/auditor/actions/workflows/ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
 [![Tests](https://img.shields.io/sonar/total_tests/tkaczenko_auditor?server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/project/overview?id=tkaczenko_auditor)
