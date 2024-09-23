@@ -69,32 +69,32 @@ jacoco {
     toolVersion = "0.8.12"
 }
 
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport)
-}
-
-tasks.jacocoTestReport {
-    enabled = false
-    dependsOn(tasks.test)
-    reports {
-        xml.required = true
-        html.required = true
+tasks {
+    test {
+        useJUnitPlatform()
+        finalizedBy(jacocoTestReport)
     }
-}
 
-tasks.withType<Checkstyle>().configureEach {
-    reports {
-        html.required = true
+    jacocoTestReport {
+        enabled = false
+        dependsOn(tasks.test)
+        reports {
+            xml.required = true
+            html.required = true
+        }
     }
-}
 
-tasks.withType<SpotBugsTask>().configureEach {
-    reports {
-        create("html") {
-            enabled = true
+    withType<Checkstyle>().configureEach {
+        reports {
+            html.required = true
+        }
+    }
+
+    withType<SpotBugsTask>().configureEach {
+        reports {
+            create("html") {
+                enabled = true
+            }
         }
     }
 }
-
-
