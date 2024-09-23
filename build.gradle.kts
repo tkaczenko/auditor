@@ -102,6 +102,9 @@ tasks {
         }
 
         pushReleaseVersionBranch = "release/${releaseVersion}"
+        with(git) {
+            requireBranch = "main"
+        }
     }
 }
 
