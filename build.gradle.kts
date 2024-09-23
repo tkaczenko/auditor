@@ -93,6 +93,12 @@ tasks {
     named<JReleaserFullReleaseTask>("jreleaserFullRelease") {
         dependsOn("aggregateJars")
     }
+
+    release {
+        val releaseVersion = property("release.releaseVersion")
+
+        pushReleaseVersionBranch = "release/${releaseVersion}"
+    }
 }
 
 jreleaser {

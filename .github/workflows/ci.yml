@@ -213,3 +213,6 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
         run: ./gradlew jreleaserFullRelease
+
+      - name: Aggregate Javadoc
+        run: ./gradlew aggregateJavadoc
