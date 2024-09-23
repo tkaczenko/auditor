@@ -69,9 +69,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-
       - name: Build with Gradle
         id: Build
         run: ./gradlew build
@@ -133,9 +130,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
 
       - name: Get current version
         run: |
@@ -208,9 +202,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
         
       - name: Sign, release to GitHub, and publish with JReleaser
         env:
