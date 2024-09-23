@@ -1,7 +1,7 @@
 # Auditor
 
-[//]: # ([![Maven Central]&#40;https://img.shields.io/maven-central/v/tkaczenko/auditor&#41;]&#40;https://central.sonatype.com/artifact/tkaczenko/auditor&#41;)
-[//]: # ([![Javadoc]&#40;https://javadoc.io/badge2/tkaczenko/auditor/javadoc.svg&#41;]&#40;https://javadoc.io/doc/tkaczenko/auditor&#41;)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.tkaczenko.auditor/auditor.starter)](https://central.sonatype.com/artifact/io.github.tkaczenko.auditor/auditor.starter)
+[![Javadoc](https://javadoc.io/badge2/io.github.tkaczenko.auditor/auditor.starter/javadoc.svg)](https://javadoc.io/doc/io.github.tkaczenko.auditor/auditor.starter)
 [![Build](https://github.com/tkaczenko/auditor/actions/workflows/build.yml/badge.svg)](https://github.com/tkaczenko/auditor/actions/workflows/build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tkaczenko_auditor&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tkaczenko_auditor)
@@ -27,27 +27,29 @@ To install the **Auditor** library in your **Spring Boot** application, add the 
 
 ```xml
 <dependency>
-    <groupId>com.github.tkaczenko</groupId>
-    <artifactId>auditor</artifactId>
-    <version>0.0.1</version>
+    <groupId>io.github.tkaczenko.auditor</groupId>
+    <artifactId>auditor.starter</artifactId>
+    <version>${version}</version>
 </dependency>
 ```
 
 Or in `build.gradle`:
 
 ```groovy
-implementation 'com.github.tkaczenko:auditor:0.0.1'
+implementation 'io.github.tkaczenko.auditor:auditor.starter:${version}'
 ```
 
 Or in `build.gradle.kts`:
 
 ```kotlin
-implementation("com.github.tkaczenko:auditor:0.0.1")
+implementation("io.github.tkaczenko.auditor:auditor.starter:${version}")
 ```
 
 ### Usage
 
 Once the dependency is added, the library could automatically start auditing HTTP requests and responses. Configuration options are available to customize the auditing behavior, such as specifying which endpoints to audit, and more.
+
+Usage of the annotations below is not required. Reason being, all the required configurations are auto-configurable and are placed in the artifacts.
 
 ```java
 @EnableHttpAuditing

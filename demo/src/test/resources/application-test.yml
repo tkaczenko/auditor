@@ -18,9 +18,10 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n traceId=%X{traceId} spanId=%X{spanId} transactionId=%X{transactionId} "
   level:
-    com.github.tkaczenko.auditor: DEBUG
+    io.github.tkaczenko.auditor: DEBUG
     web: DEBUG
     sql: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
     org.springframework.retry: DEBUG
 
 management:

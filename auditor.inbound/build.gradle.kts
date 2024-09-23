@@ -9,9 +9,9 @@ and persists the audit data.
 """.trimIndent()
 
 dependencies {
-    testImplementation(libs.spring.test)
-
     api(project(":auditor.core"))
 
     implementation(libs.spring.boot.starter.web)
+
+    testImplementation(libs.spring.test)
 }
