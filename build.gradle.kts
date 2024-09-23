@@ -95,7 +95,11 @@ tasks {
     }
 
     release {
-        val releaseVersion = property("release.releaseVersion")
+        val releaseVersion = if (hasProperty("release.releaseVersion")) {
+            property("release.releaseVersion")
+        } else {
+            version
+        }
 
         pushReleaseVersionBranch = "release/${releaseVersion}"
     }
