@@ -86,12 +86,20 @@ tasks {
     }
 
     register<Copy>("aggregateJars") {
+        group = "distribution"
+        description = "Copies all exported subproject jars to a staging directory"
+        dependsOn("assemble")
+
         from(exportedProjects.map { project(it) }.map { it.layout.buildDirectory.dir("staging-deploy").get() })
         into(stagingRepository)
     }
 
     named<JReleaserFullReleaseTask>("jreleaserFullRelease") {
         dependsOn("aggregateJars")
+    }
+
+    release {
+        buildTasks = listOf("aggregateJars")
     }
 }
 

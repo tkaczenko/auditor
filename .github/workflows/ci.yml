@@ -212,6 +212,7 @@ jobs:
           JRELEASER_MAVENCENTRAL_TOKEN: ${{ secrets.JRELEASER_MAVENCENTRAL_TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           TOKEN: ${{ secrets.TOKEN }}
+          JRELEASER_PROJECT_VERSION: ${{ env.new_version }}
         run: ./gradlew jreleaserFullRelease
 
       - name: Aggregate Javadoc
