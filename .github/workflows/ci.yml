@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+
+concurrency:
+  # On master, we don't want any jobs cancelled so the sha is used to name the group
+  # On PR branches, we cancel the job if new commits are pushed
+  # More info: https://stackoverflow.com/a/68422069/253468
+  group: ${{ (github.ref == 'refs/heads/master') && format('{0}-{1}', github.workflow_ref, github.sha) || format('{0}-{1}', github.workflow_ref, github.head_ref) }}
+  cancel-in-progress: true
+
+env:
+  JAVA_VERSION: '21'
+  JAVA_DISTRO: 'adopt'
+
+jobs:
+  current-version:
+    if: |
+      github.repository == 'tkaczenko/auditor' 
+      && startsWith(github.event.head_commit.message, 'Releasing version') != true
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.vars.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Version
+        id: vars
+        shell: bash
+        run: |
+          source gradle.properties
+          echo "VERSION=$(echo ${version})"
+          echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
+
+  new-version:
+    if: |
+      github.event_name == 'workflow_dispatch'
+      && inputs.version != ''
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.vars.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Version
+        id: vars
+        shell: bash
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          sed -i '' "s/^version=.*/version=$VERSION/" gradle.properties
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub"
+          git commit -a -m "Releasing version $VERSION"
+          git push origin main
+
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      cacheKey: ${{ steps.cacheKey.outputs.cacheKey }}
+    steps:
+      - run: echo "CACHE_KEY=maven-tkaczenko-$(date +%s)" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRO }}
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build with Gradle
+        id: Build
+        run: ./gradlew -q --no-daemon --scan build
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+
+      - name: Sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        if: ${{ !cancelled() && env.SONAR_TOKEN != '' }}
+        run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ env.CACHE_KEY }}
+
+      - id: cacheKey
+        run: echo "cacheKey=${{ env.CACHE_KEY }}" >> $GITHUB_OUTPUT
+
+  publish:
+    needs:
+      - current-version
+      - new-version
+      - build
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    env:
+      JRELEASER_PROJECT_VERSION: ${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+      JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
+      JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
+      JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
+      JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_USERNAME }}
+      JRELEASER_MAVENCENTRAL_TOKEN: ${{ secrets.JRELEASER_MAVENCENTRAL_TOKEN }}
+      USERNAME: ${{ secrets.USERNAME }}
+      TOKEN: ${{ secrets.TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ needs.build.outputs.cacheKey }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRO }}
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle
+        id: Build
+        run: ./gradlew -q --no-daemon --scan publish
+
+      - name: Assemble
+        uses: jreleaser/release-action@v2
+        with:
+          arguments: assemble
+
+      - name: Release
+        uses: jreleaser/release-action@v2
+        with:
+          arguments: full-release

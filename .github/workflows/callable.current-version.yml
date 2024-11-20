@@ -1,0 +1,21 @@
+name: Current Version
+
+on:
+  workflow_call:
+
+jobs:
+  precheck:
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.vars.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Version
+        id: vars
+        shell: bash
+        run: |
+          source gradle.properties
+          echo "VERSION=$(echo ${version})"
+          echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
