@@ -39,7 +39,6 @@ jobs:
       TOKEN: ${{ secrets.TOKEN }}
     steps:
       - uses: ./.github/workflows/callable.build.yml
-        secrets: inherit
 
       - name: Assemble
         uses: jreleaser/release-action@v2
