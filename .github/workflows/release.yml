@@ -21,7 +21,7 @@ jobs:
         shell: bash
         run: |
           VERSION=${{ github.event.inputs.version }}
-          ./gradlew -PnewVersion=$VERSION setVersion
+          sed -i '' "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -a -m "Releasing version $VERSION"
@@ -42,6 +42,7 @@ jobs:
       TOKEN: ${{ secrets.TOKEN }}
     steps:
       - uses: ./.github/workflows/callable.build.yml
+        secrets: inherit
 
       - name: Assemble
         uses: jreleaser/release-action@v2

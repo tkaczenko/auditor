@@ -20,6 +20,7 @@ jobs:
         shell: bash
         run: |
           source gradle.properties
+          echo "VERSION=$(echo ${version})"
           echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
 
   release:
@@ -37,7 +38,7 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       TOKEN: ${{ secrets.TOKEN }}
     steps:
-      - uses: .github/workflows/callable.build.yml
+      - uses: ./.github/workflows/callable.build.yml
         secrets: inherit
 
       - name: Assemble
