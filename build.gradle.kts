@@ -65,6 +65,7 @@ tasks {
     }
 
     withType<SonarTask>() {
+        dependsOn("testAggregateTestReport")
         dependsOn("testCodeCoverageReport")
     }
 
