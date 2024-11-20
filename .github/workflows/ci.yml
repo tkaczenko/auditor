@@ -39,8 +39,13 @@ jobs:
 
   build:
     uses: ./.github/workflows/callable.build.yml
+    with:
+      JAVA_VERSION: ${{ env.JAVA_VERSION }}
+      JAVA_DISTRO: ${{ env.JAVA_DISTRO }}
 
   publish:
     needs:
       - build
     uses: ./.github/workflows/callable.publish.yml
+    if: ${{ github.event_name == 'pull_request' }}
+    secrets: inherit

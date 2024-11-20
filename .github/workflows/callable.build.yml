@@ -2,6 +2,13 @@ name: Build
 
 on:
   workflow_call:
+    inputs:
+      JAVA_VERSION:
+        required: true
+        type: string
+      JAVA_DISTRO:
+        required: true
+        type: string
 
 jobs:
   build:
