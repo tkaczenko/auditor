@@ -3,16 +3,9 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      type:
-        description: 'Release'
+      version:
+        description: 'Release version'
         required: true
-        default: '...no release'
-        type: choice
-        options:
-          - '...no release'
-          - major
-          - minor
-          - patch
 
 jobs:
   precheck:
