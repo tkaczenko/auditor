@@ -9,7 +9,6 @@ plugins {
     id("test-report-aggregation")
     id("jacoco-report-aggregation")
     alias(libs.plugins.sonarqube)
-    alias(libs.plugins.release)
     alias(libs.plugins.jreleaser)
     `maven-publish`
 }
@@ -96,10 +95,6 @@ tasks {
 
     named<JReleaserFullReleaseTask>("jreleaserFullRelease") {
         dependsOn("aggregateJars")
-    }
-
-    release {
-        buildTasks = listOf("aggregateJars")
     }
 }
 

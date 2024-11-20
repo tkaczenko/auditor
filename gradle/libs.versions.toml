@@ -16,7 +16,6 @@ assertj = "3.26.0"
 awaitility = "4.2.1"
 micrometer-brave = "1.2.5"
 sl4j-api = "2.0.13"
-release_plugin = "3.0.2"
 jreleaser_plugin = "1.14.0"
 
 [libraries]
@@ -48,6 +47,5 @@ micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", v
 sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j-api" }
 
 [plugins]
-release = { id = "net.researchgate.release", version.ref = "release_plugin" }
 jreleaser = { id = "org.jreleaser", version.ref = "jreleaser_plugin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube_plugin" }
