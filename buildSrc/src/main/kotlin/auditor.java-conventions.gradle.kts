@@ -1,4 +1,3 @@
-import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.accessors.dm.LibrariesForLibs
 
 val libs = project.extensions.getByName("libs") as LibrariesForLibs
@@ -71,30 +70,22 @@ jacoco {
 
 tasks {
     test {
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+        forkEvery = 100
+
         useJUnitPlatform()
+
         finalizedBy(jacocoTestReport)
     }
 
+    withType<JavaCompile>().configureEach {
+        options.isFork = true
+    }
+
     jacocoTestReport {
-        enabled = false
         dependsOn(tasks.test)
         reports {
             xml.required = true
-            html.required = true
-        }
-    }
-
-    withType<Checkstyle>().configureEach {
-        reports {
-            html.required = true
-        }
-    }
-
-    withType<SpotBugsTask>().configureEach {
-        reports {
-            create("html") {
-                enabled = true
-            }
         }
     }
 }
