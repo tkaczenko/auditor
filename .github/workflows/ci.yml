@@ -51,7 +51,7 @@ jobs:
             VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
             echo "Detected version: $VERSION"
           fi
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPU
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
   build:
     needs:
