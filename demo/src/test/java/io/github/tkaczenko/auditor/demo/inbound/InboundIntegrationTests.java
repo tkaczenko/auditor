@@ -14,7 +14,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @DisplayName("InboundIntegrationTests " + InboundIntegrationTests.TEST_URL + " ")
 public class InboundIntegrationTests extends AbstractIntegrationTest {
 
