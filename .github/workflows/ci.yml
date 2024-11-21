@@ -41,7 +41,7 @@ jobs:
         id: vars
         shell: bash
         run: |
-          "VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)"
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
           echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
