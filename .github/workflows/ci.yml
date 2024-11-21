@@ -26,10 +26,7 @@ env:
   JAVA_DISTRO: 'adopt'
 
 jobs:
-  current-version:
-    if: |
-      github.repository == 'tkaczenko/auditor' && startsWith(github.event.head_commit.message, 'Releasing version') != true
-      && inputs.version == ''
+  determine-version:
     runs-on: ubuntu-latest
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -37,47 +34,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get Version
+      - name: Get or Set Version
         id: vars
         shell: bash
         run: |
-          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
-          echo "Detected version: $VERSION"
-          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
-
-  new-version:
-    if: github.event_name == 'workflow_dispatch' && inputs.version != ''
-    runs-on: ubuntu-latest
-    outputs:
-      VERSION: ${{ steps.vars.outputs.VERSION }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set Version
-        id: vars
-        shell: bash
-        run: |
-          VERSION=${{ inputs.version }}
-          echo "Setting version: $VERSION"
-          sed -i "s/^version=.*/version=$VERSION/" gradle.properties
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub"
-          git commit -a -m "Releasing version $VERSION"
-          git push origin main
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.version }}" ]]; then
+            echo "Setting version from input: ${{ inputs.version }}"
+            echo "${{ inputs.version }}" > VERSION
+            sed -i "s/^version=.*/version=${{ inputs.version }}/" gradle.properties
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -am "Set version to ${{ inputs.version }}"
+            git push origin main
+            VERSION=${{ inputs.version }}
+          else
+            VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+            echo "Detected version: $VERSION"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPU
 
   build:
-    if: always()
     needs:
-      - current-version
-      - new-version
+      - determine-version
     runs-on: ubuntu-latest
     steps:
-      - name: Build Version
-        run: |
-          VERSION=${{ needs.new-version.outputs.VERSION || needs.current-version.outputs.VERSION }}
-          echo "Used version: $VERSION"
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -117,7 +97,6 @@ jobs:
         run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
 
   release:
-    if: github.event_name != 'pull_request'
     needs:
       - build
     runs-on: ubuntu-latest
@@ -132,11 +111,6 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       TOKEN: ${{ secrets.TOKEN }}
     steps:
-      - name: Release Version
-        run: |
-          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
-          echo "Using version: $VERSION"
-
       - name: Checkout
         uses: actions/checkout@v4
 
