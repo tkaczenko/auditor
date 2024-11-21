@@ -96,6 +96,7 @@ jobs:
         run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
 
   release:
+    if: github.event_name != 'pull_request'
     needs:
       - determine-version
       - build
