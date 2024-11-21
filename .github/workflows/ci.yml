@@ -127,4 +127,4 @@ jobs:
         run: ./gradlew -q --no-daemon --scan publish
 
       - name: Release with Gradle
-        run: ./gradlew -q --no-daemon --scan jreleaserFullRelease --no-configuration-cache --dryrun
+        run: ./gradlew -q --no-daemon --scan jreleaserFullRelease --no-configuration-cache
