@@ -63,6 +63,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Project Version
+        run: |
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Project version: $VERSION"
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -114,6 +119,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Project Version
+        run: |
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Project version: $VERSION"
 
       - name: Setup Java
         uses: actions/setup-java@v4

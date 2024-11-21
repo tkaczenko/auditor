@@ -60,8 +60,8 @@ val stagingRepository = layout.buildDirectory.dir("staging-deploy").get()
 
 tasks {
     withType<SonarTask>() {
-        dependsOn("testAggregateTestReport")
-        dependsOn("testCodeCoverageReport")
+        dependsOn(named<TestReport>("testAggregateTestReport"))
+        dependsOn(named<JacocoReport>("testCodeCoverageReport"))
     }
 
     register<Javadoc>("aggregateJavadoc") {
