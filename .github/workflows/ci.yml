@@ -80,7 +80,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build with Gradle
-        run: ./gradlew -q --no-daemon --scan build --build-cache
+        run: ./gradlew -q --no-daemon --scan build
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4

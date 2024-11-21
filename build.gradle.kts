@@ -174,7 +174,7 @@ jreleaser {
                     url = "https://maven.pkg.github.com/tkaczenko/auditor"
                     username = System.getenv("USERNAME")
                     password = System.getenv("TOKEN")
-                    snapshotSupported = true
+                    snapshotSupported = false
 
                     stagingRepository(stagingRepository.asFile.path)
                 }
@@ -187,7 +187,7 @@ jreleaser {
                     url = "https://central.sonatype.com/api/v1/publisher"
                     username = System.getenv("JRELEASER_MAVENCENTRAL_USERNAME")
                     password = System.getenv("JRELEASER_MAVENCENTRAL_TOKEN")
-                    snapshotSupported = true
+                    snapshotSupported = false
 
                     stagingRepository(stagingRepository.asFile.path)
                 }
