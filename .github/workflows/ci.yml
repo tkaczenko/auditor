@@ -41,9 +41,8 @@ jobs:
         id: vars
         shell: bash
         run: |
-          source gradle.properties
-          echo "VERSION=$(echo ${version})"
-          echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
+          "VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)"
+          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
     if: |
@@ -60,8 +59,8 @@ jobs:
         id: vars
         shell: bash
         run: |
-          VERSION=${{ github.event.inputs.version }}
-          sed -i '' "s/^version=.*/version=$VERSION/" gradle.properties
+          VERSION=${{ inputs.version }}
+          sed -i "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -a -m "Releasing version $VERSION"
@@ -73,6 +72,11 @@ jobs:
       - new-version
     runs-on: ubuntu-latest
     steps:
+      - name: Build Version
+        run: |
+          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+          echo "Using version: $VERSION"
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -126,6 +130,11 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       TOKEN: ${{ secrets.TOKEN }}
     steps:
+      - name: Release Version
+        run: |
+          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+          echo "Using version: $VERSION"
+
       - name: Checkout
         uses: actions/checkout@v4
 
