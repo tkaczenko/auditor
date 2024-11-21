@@ -123,16 +123,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build with Gradle
-        id: Build
+      - name: Publish with Gradle
         run: ./gradlew -q --no-daemon --scan publish
 
-      - name: Assemble
-        uses: jreleaser/release-action@v2
-        with:
-          arguments: assemble
-
-      - name: Release
-        uses: jreleaser/release-action@v2
-        with:
-          arguments: full-release
+      - name: Publish with Gradle
+        run: ./gradlew -q --no-daemon --scan jreleaserFullRelease --dryrun
