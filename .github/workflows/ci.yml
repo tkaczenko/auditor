@@ -27,9 +27,7 @@ env:
 
 jobs:
   current-version:
-    if: |
-      github.repository == 'tkaczenko/auditor' 
-      && startsWith(github.event.head_commit.message, 'Releasing version') != true
+    if: github.repository == 'tkaczenko/auditor' && startsWith(github.event.head_commit.message, 'Releasing version') != true
     runs-on: ubuntu-latest
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -42,13 +40,11 @@ jobs:
         shell: bash
         run: |
           VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
-          echo "Using version: $VERSION"
+          echo "Detected version: $VERSION"
           echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
-    if: |
-      github.event_name == 'workflow_dispatch'
-      && inputs.version != ''
+    if: github.event_name == 'workflow_dispatch' && inputs.version != ''
     runs-on: ubuntu-latest
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -61,7 +57,7 @@ jobs:
         shell: bash
         run: |
           VERSION=${{ inputs.version }}
-          echo "Using version: $VERSION"
+          echo "Setting version: $VERSION"
           sed -i "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
@@ -69,8 +65,7 @@ jobs:
           git push origin main
 
   build:
-    if: |
-      always()
+    if: always()
     needs:
       - current-version
       - new-version
@@ -79,7 +74,7 @@ jobs:
       - name: Build Version
         run: |
           VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
-          echo "Using version: $VERSION"
+          echo "Used version: $VERSION"
 
       - name: Checkout
         uses: actions/checkout@v4
