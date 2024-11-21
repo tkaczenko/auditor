@@ -67,6 +67,8 @@ jobs:
           git push origin main
 
   build:
+    if: |
+      always()
     needs:
       - current-version
       - new-version
