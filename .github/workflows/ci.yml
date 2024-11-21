@@ -28,24 +28,89 @@ env:
 jobs:
   current-version:
     if: github.repository == 'tkaczenko/auditor' && startsWith(github.event.head_commit.message, 'Releasing version') != true
-    uses: ./.github/workflows/callable.current-version.yml
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.vars.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Version
+        id: vars
+        shell: bash
+        run: |
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Detected version: $VERSION"
+          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
     if: github.event_name == 'workflow_dispatch' && inputs.version != ''
-    uses: ./.github/workflows/callable.new-version.yml
-    with:
-      version: inputs.version
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.vars.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Version
+        id: vars
+        shell: bash
+        run: |
+          VERSION=${{ inputs.version }}
+          echo "Setting version: $VERSION"
+          sed -i "s/^version=.*/version=$VERSION/" gradle.properties
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub"
+          git commit -a -m "Releasing version $VERSION"
+          git push origin main
 
   build:
     if: always()
     needs:
       - current-version
       - new-version
-    uses: ./.github/workflows/callable.build.yml
-    with:
-      VERSION: ${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
-      JAVA_VERSION: ${{ env.JAVA_VERSION }}
-      JAVA_DISTRO: ${{ env.JAVA_DISTRO }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Version
+        run: |
+          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+          echo "Used version: $VERSION"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRO }}
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build with Gradle
+        id: Build
+        run: ./gradlew -q --no-daemon --scan build
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+
+      - name: Sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        if: ${{ !cancelled() && env.SONAR_TOKEN != '' }}
+        run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
 
   release:
     if: github.event_name != 'pull_request'
