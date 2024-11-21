@@ -44,8 +44,8 @@ jobs:
     uses: ./.github/workflows/callable.build.yml
     with:
       VERSION: ${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
-      JAVA_VERSION: env.JAVA_VERSION
-      JAVA_DISTRO: env.JAVA_DISTRO
+      JAVA_VERSION: ${{ env.JAVA_VERSION }}
+      JAVA_DISTRO: ${{ env.JAVA_DISTRO }}
 
   release:
     if: | 
