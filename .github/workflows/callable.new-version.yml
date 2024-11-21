@@ -2,6 +2,11 @@ name: New Version
 
 on:
   workflow_call:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        type: string
 
 jobs:
   precheck:
@@ -12,12 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Version
+      - name: Set Version
         id: vars
         shell: bash
         run: |
-          VERSION=${{ github.event.inputs.version }}
-          sed -i '' "s/^version=.*/version=$VERSION/" gradle.properties
+          VERSION=${{ inputs.version }}
+          echo "Setting version: $VERSION"
+          sed -i "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -a -m "Releasing version $VERSION"

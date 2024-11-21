@@ -3,6 +3,9 @@ name: Build
 on:
   workflow_call:
     inputs:
+      VERSION:
+        required: true
+        type: string
       JAVA_VERSION:
         required: true
         type: string
@@ -14,7 +17,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CACHE_KEY=maven-tkaczenko-$(date +%s)" >> $GITHUB_ENV
+      - name: Build Version
+        run: |
+          VERSION=${{ inputs.VERSION }}
+          echo "Used version: $VERSION"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,8 +28,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: ${{ env.JAVA_DISTRO }}
-          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ inputs.JAVA_DISTRO }}
+          java-version: ${{ inputs.JAVA_VERSION }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -51,12 +57,3 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         if: ${{ !cancelled() && env.SONAR_TOKEN != '' }}
         run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
-
-      - name: Cache local Maven repository
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ env.CACHE_KEY }}
-
-      - id: cacheKey
-        run: echo "cacheKey=${{ env.CACHE_KEY }}" >> $GITHUB_OUTPUT

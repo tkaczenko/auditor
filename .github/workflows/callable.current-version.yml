@@ -16,6 +16,6 @@ jobs:
         id: vars
         shell: bash
         run: |
-          source gradle.properties
-          echo "VERSION=$(echo ${version})"
-          echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Detected version: $VERSION"
+          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
