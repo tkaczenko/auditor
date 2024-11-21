@@ -28,6 +28,8 @@ env:
 jobs:
   determine-version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
     steps:
