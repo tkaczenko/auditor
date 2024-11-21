@@ -25,7 +25,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @WireMockTest(httpPort = OutboundRestTemplateIntegrationTests.WIREMOCK_PORT)
 @DisplayName(
     "OutboundRestTemplateIntegrationTests " + OutboundRestTemplateIntegrationTests.TEST_URL + " ")

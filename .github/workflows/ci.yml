@@ -12,6 +12,7 @@ on:
       version:
         description: 'Release version'
         required: true
+        type: string
 
 concurrency:
   # On master, we don't want any jobs cancelled so the sha is used to name the group
@@ -26,9 +27,7 @@ env:
 
 jobs:
   current-version:
-    if: |
-      github.repository == 'tkaczenko/auditor' 
-      && startsWith(github.event.head_commit.message, 'Releasing version') != true
+    if: github.repository == 'tkaczenko/auditor' && startsWith(github.event.head_commit.message, 'Releasing version') != true
     runs-on: ubuntu-latest
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -40,14 +39,12 @@ jobs:
         id: vars
         shell: bash
         run: |
-          source gradle.properties
-          echo "VERSION=$(echo ${version})"
-          echo "VERSION=$(echo ${version})" >> $GITHUB_OUTPUT
+          VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Detected version: $VERSION"
+          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
-    if: |
-      github.event_name == 'workflow_dispatch'
-      && inputs.version != ''
+    if: github.event_name == 'workflow_dispatch' && inputs.version != ''
     runs-on: ubuntu-latest
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -55,23 +52,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Version
+      - name: Set Version
         id: vars
         shell: bash
         run: |
-          VERSION=${{ github.event.inputs.version }}
-          sed -i '' "s/^version=.*/version=$VERSION/" gradle.properties
+          VERSION=${{ inputs.version }}
+          echo "Setting version: $VERSION"
+          sed -i "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -a -m "Releasing version $VERSION"
           git push origin main
 
   build:
+    if: always()
+    needs:
+      - current-version
+      - new-version
     runs-on: ubuntu-latest
-    outputs:
-      cacheKey: ${{ steps.cacheKey.outputs.cacheKey }}
     steps:
-      - run: echo "CACHE_KEY=maven-tkaczenko-$(date +%s)" >> $GITHUB_ENV
+      - name: Build Version
+        run: |
+          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+          echo "Used version: $VERSION"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -109,21 +112,10 @@ jobs:
         if: ${{ !cancelled() && env.SONAR_TOKEN != '' }}
         run: ./gradlew sonar -Dsonar.gradle.skipCompile=true
 
-      - name: Cache local Maven repository
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ env.CACHE_KEY }}
-
-      - id: cacheKey
-        run: echo "cacheKey=${{ env.CACHE_KEY }}" >> $GITHUB_OUTPUT
-
-  publish:
+  release:
+    if: github.event_name != 'pull_request'
     needs:
-      - current-version
-      - new-version
       - build
-    if: ${{ github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     env:
       JRELEASER_PROJECT_VERSION: ${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
@@ -136,13 +128,13 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       TOKEN: ${{ secrets.TOKEN }}
     steps:
+      - name: Release Version
+        run: |
+          VERSION=${{ needs.current-version.outputs.VERSION || needs.new-version.outputs.VERSION }}
+          echo "Using version: $VERSION"
+
       - name: Checkout
         uses: actions/checkout@v4
-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ needs.build.outputs.cacheKey }}
 
       - name: Setup Java
         uses: actions/setup-java@v4
