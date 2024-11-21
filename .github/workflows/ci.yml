@@ -42,6 +42,7 @@ jobs:
         shell: bash
         run: |
           VERSION=$(awk -F'=' '/^version=/ {print $2}' gradle.properties)
+          echo "Using version: $VERSION"
           echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
 
   new-version:
@@ -60,6 +61,7 @@ jobs:
         shell: bash
         run: |
           VERSION=${{ inputs.version }}
+          echo "Using version: $VERSION"
           sed -i "s/^version=.*/version=$VERSION/" gradle.properties
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
