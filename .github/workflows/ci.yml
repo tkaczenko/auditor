@@ -14,6 +14,11 @@ on:
         required: true
         type: string
 
+permissions:
+  actions: write
+  id-token: write
+  contents: write
+
 concurrency:
   # On master, we don't want any jobs cancelled so the sha is used to name the group
   # On PR branches, we cancel the job if new commits are pushed
@@ -28,8 +33,6 @@ env:
 jobs:
   determine-version:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     outputs:
       VERSION: ${{ steps.vars.outputs.VERSION }}
     steps:
@@ -121,6 +124,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Project Version
         run: |
