@@ -1,12 +1,12 @@
-package io.github.tkaczenko.auditor.outbound.feign;
+package io.github.tkaczenko.auditor.outbound.feign.api;
 
 import feign.Logger;
 import feign.Request;
 import feign.Response;
-import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
 import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
 import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;

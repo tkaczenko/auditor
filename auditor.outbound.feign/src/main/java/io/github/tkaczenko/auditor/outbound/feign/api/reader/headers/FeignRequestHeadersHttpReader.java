@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.outbound.feign.reader;
+package io.github.tkaczenko.auditor.outbound.feign.api.reader.headers;
 
 import feign.Request;
 import io.github.tkaczenko.auditor.core.api.reader.headers.HeadersHttpReader;
