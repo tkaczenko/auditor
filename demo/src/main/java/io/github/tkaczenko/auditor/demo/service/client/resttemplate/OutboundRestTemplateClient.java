@@ -4,7 +4,7 @@ package io.github.tkaczenko.auditor.demo.service.client.resttemplate;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig;
 import io.github.tkaczenko.auditor.demo.service.client.resttemplate.dto.RestTemplateResponse;
-import io.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
+import io.github.tkaczenko.auditor.outbound.api.AuditedOutboundCall;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;

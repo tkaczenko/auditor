@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.outbound.resttemplate.reader;
+package io.github.tkaczenko.auditor.outbound.api.reader.body;
 
 import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import java.io.IOException;

@@ -3,7 +3,7 @@ package io.github.tkaczenko.auditor.demo.service.client.feign;
 import io.github.tkaczenko.auditor.demo.config.FeignConfig;
 import io.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignRequest;
 import io.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignResponse;
-import io.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
+import io.github.tkaczenko.auditor.outbound.api.AuditedOutboundCall;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

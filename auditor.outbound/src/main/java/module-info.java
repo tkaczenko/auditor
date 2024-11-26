@@ -6,8 +6,9 @@
 module auditor.outbound {
   exports io.github.tkaczenko.auditor.outbound;
   exports io.github.tkaczenko.auditor.outbound.config;
+    exports io.github.tkaczenko.auditor.outbound.api;
 
-  requires auditor.core;
+    requires auditor.core;
   requires static lombok;
   requires org.slf4j;
   requires java.xml;

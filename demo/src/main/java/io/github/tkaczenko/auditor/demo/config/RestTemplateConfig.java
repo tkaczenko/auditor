@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.demo.config;
 
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.DemoClientProperties;
-import io.github.tkaczenko.auditor.outbound.resttemplate.aspect.RestTemplateAuditOutboundRequestInterceptorWithAspect;
+import io.github.tkaczenko.auditor.outbound.api.RestTemplateAuditOutboundRequestInterceptorWithAspect;
 import java.time.Duration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;

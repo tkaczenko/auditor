@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.outbound;
+package io.github.tkaczenko.auditor.outbound.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

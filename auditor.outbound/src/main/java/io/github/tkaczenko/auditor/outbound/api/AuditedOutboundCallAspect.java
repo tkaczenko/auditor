@@ -1,8 +1,7 @@
-package io.github.tkaczenko.auditor.outbound.aspect;
+package io.github.tkaczenko.auditor.outbound.api;
 
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
 import io.github.tkaczenko.auditor.core.internal.service.ThreadLocalAuditRequestResponseContext;
-import io.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

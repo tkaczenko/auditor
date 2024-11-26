@@ -14,6 +14,8 @@ import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
 import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
 import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.outbound.api.RestTemplateAuditOutboundRequestInterceptorWithAspect;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
