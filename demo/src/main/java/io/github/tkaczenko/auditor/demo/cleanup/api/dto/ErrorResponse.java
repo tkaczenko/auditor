@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.model.dto;
+package io.github.tkaczenko.auditor.demo.cleanup.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Request {
-  private String requestTransactionId;
+public class ErrorResponse {
+  private String error;
 }

@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.cleanup;
+package io.github.tkaczenko.auditor.demo.cleanup.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

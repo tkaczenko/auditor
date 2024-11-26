@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.outbound.feign;
+package io.github.tkaczenko.auditor.demo.outbound.feign.api;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
@@ -10,9 +10,9 @@ import static io.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource
 
 import io.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import io.github.tkaczenko.auditor.demo.IntegrationTestScenario;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.ErrorResponse;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Response;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.FeignClientProperties;
-import io.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
-import io.github.tkaczenko.auditor.demo.model.dto.Response;
 import io.github.tkaczenko.auditor.demo.util.Files.Inbound;
 import io.github.tkaczenko.auditor.demo.util.Files.Outbound;
 import io.restassured.response.ValidatableResponse;

@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.outbound.resttemplate.aspect;
+package io.github.tkaczenko.auditor.demo.outbound.api;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -10,12 +10,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
 import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
 import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.outbound.api.RestTemplateAuditOutboundRequestInterceptorWithAspect;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;

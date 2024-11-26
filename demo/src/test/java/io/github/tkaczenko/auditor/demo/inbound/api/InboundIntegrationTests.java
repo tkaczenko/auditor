@@ -1,12 +1,12 @@
-package io.github.tkaczenko.auditor.demo.inbound;
+package io.github.tkaczenko.auditor.demo.inbound.api;
 
 import static io.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource;
 import static io.github.tkaczenko.auditor.demo.util.Files.Inbound;
 
 import io.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import io.github.tkaczenko.auditor.demo.IntegrationTestScenario;
-import io.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
-import io.github.tkaczenko.auditor.demo.model.dto.Response;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.ErrorResponse;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Response;
 import io.restassured.response.ValidatableResponse;
 import lombok.SneakyThrows;
 import org.hamcrest.CoreMatchers;

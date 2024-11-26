@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.model;
+package io.github.tkaczenko.auditor.demo.entity;
 
 import io.github.tkaczenko.auditor.core.internal.entity.AuditRequestResponse;
 import jakarta.persistence.Column;

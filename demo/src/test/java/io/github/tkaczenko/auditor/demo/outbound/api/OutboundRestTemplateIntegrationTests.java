@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.outbound.resttemplate;
+package io.github.tkaczenko.auditor.demo.outbound.api;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.absent;
@@ -11,9 +11,9 @@ import static io.github.tkaczenko.auditor.demo.util.Files.Outbound.RestTemplate;
 
 import io.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import io.github.tkaczenko.auditor.demo.IntegrationTestScenario;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.ErrorResponse;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Response;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.DemoClientProperties;
-import io.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
-import io.github.tkaczenko.auditor.demo.model.dto.Response;
 import io.restassured.response.ValidatableResponse;
 import lombok.SneakyThrows;
 import org.hamcrest.CoreMatchers;
@@ -30,7 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @AutoConfigureWireMock(port = 0)
-@TestPropertySource(properties = "demo-client.url=http://localhost:${wiremock.server.port}/demo-client")
+@TestPropertySource(
+    properties = "demo-client.url=http://localhost:${wiremock.server.port}/demo-client")
 @DisplayName(
     "OutboundRestTemplateIntegrationTests " + OutboundRestTemplateIntegrationTests.TEST_URL + " ")
 public class OutboundRestTemplateIntegrationTests extends AbstractIntegrationTest {

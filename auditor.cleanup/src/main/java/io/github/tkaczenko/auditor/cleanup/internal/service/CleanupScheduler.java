@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.cleanup.service;
+package io.github.tkaczenko.auditor.cleanup.internal.service;
 
 import io.github.tkaczenko.auditor.core.internal.entity.AuditRequestResponse;
 import io.github.tkaczenko.auditor.core.internal.repository.AuditRequestResponseRepository;

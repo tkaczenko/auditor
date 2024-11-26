@@ -2,7 +2,7 @@ package io.github.tkaczenko.auditor.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.tkaczenko.auditor.demo.model.AuditRecord;
+import io.github.tkaczenko.auditor.demo.entity.AuditRecord;
 import io.github.tkaczenko.auditor.demo.repository.AuditRecordRepository;
 import io.github.tkaczenko.auditor.demo.util.CompareResultService;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.demo.model.dto;
+package io.github.tkaczenko.auditor.demo.cleanup.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
