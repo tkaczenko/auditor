@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.outbound.feign.reader;
 
 import feign.Request;
-import io.github.tkaczenko.auditor.core.BodyHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import org.springframework.stereotype.Component;
 
 /** HTTP request body reader from the provided {@link Request} */

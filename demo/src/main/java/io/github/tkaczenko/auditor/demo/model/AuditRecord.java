@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.demo.model;
 
-import io.github.tkaczenko.auditor.core.model.AuditRequestResponse;
+import io.github.tkaczenko.auditor.core.internal.entity.AuditRequestResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

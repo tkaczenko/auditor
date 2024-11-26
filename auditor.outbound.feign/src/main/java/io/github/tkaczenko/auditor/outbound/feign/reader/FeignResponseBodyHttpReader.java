@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.outbound.feign.reader;
 
 import feign.Response;
-import io.github.tkaczenko.auditor.core.BodyHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;

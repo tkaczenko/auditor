@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.inbound.reader;
 
-import io.github.tkaczenko.auditor.core.HeadersHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.headers.HeadersHttpReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

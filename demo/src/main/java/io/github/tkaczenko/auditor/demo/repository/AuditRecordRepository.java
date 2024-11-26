@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.demo.repository;
 
-import io.github.tkaczenko.auditor.core.repository.AuditRequestResponseRepository;
+import io.github.tkaczenko.auditor.core.internal.repository.AuditRequestResponseRepository;
 import io.github.tkaczenko.auditor.demo.model.AuditRecord;
 import org.springframework.stereotype.Repository;
 

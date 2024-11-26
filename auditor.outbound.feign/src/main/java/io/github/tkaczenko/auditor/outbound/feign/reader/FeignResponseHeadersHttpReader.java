@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.outbound.feign.reader;
 
 import feign.Response;
-import io.github.tkaczenko.auditor.core.HeadersHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.headers.HeadersHttpReader;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 

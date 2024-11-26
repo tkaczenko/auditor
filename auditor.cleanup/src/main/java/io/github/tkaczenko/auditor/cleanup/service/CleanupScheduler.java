@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.cleanup.service;
 
-import io.github.tkaczenko.auditor.core.model.AuditRequestResponse;
-import io.github.tkaczenko.auditor.core.repository.AuditRequestResponseRepository;
+import io.github.tkaczenko.auditor.core.internal.entity.AuditRequestResponse;
+import io.github.tkaczenko.auditor.core.internal.repository.AuditRequestResponseRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;

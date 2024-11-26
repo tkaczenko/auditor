@@ -1,7 +1,7 @@
 package io.github.tkaczenko.auditor.outbound.aspect;
 
-import io.github.tkaczenko.auditor.core.service.AuditFacade;
-import io.github.tkaczenko.auditor.core.service.AuditRequestContext;
+import io.github.tkaczenko.auditor.core.internal.AuditFacade;
+import io.github.tkaczenko.auditor.core.internal.service.ThreadLocalAuditRequestResponseContext;
 import io.github.tkaczenko.auditor.outbound.AuditedOutboundCall;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -39,7 +39,7 @@ public class AuditedOutboundCallAspect {
   @Around(value = "@annotation(auditedOutboundCall)", argNames = "jp,auditedOutboundCall")
   public Object auditedOutboundCall(
       ProceedingJoinPoint jp, AuditedOutboundCall auditedOutboundCall) {
-    AuditRequestContext.initializeAuditRequestBuilderThreadLocal();
+    ThreadLocalAuditRequestResponseContext.initializeAuditRequestBuilderThreadLocal();
 
     String provider = auditedOutboundCall.provider();
     String requestType = auditedOutboundCall.requestType();

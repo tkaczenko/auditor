@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.inbound.reader;
 
-import io.github.tkaczenko.auditor.core.BodyHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import java.nio.charset.Charset;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.ContentCachingResponseWrapper;

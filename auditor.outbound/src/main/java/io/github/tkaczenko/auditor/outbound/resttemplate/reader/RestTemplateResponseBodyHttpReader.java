@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.outbound.resttemplate.reader;
 
-import io.github.tkaczenko.auditor.core.BodyHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.outbound.resttemplate.reader;
 
-import io.github.tkaczenko.auditor.core.HeadersHttpReader;
+import io.github.tkaczenko.auditor.core.api.reader.headers.HeadersHttpReader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;

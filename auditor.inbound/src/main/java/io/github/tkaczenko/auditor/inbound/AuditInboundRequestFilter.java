@@ -1,11 +1,11 @@
 package io.github.tkaczenko.auditor.inbound;
 
-import io.github.tkaczenko.auditor.core.Auditable;
-import io.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
-import io.github.tkaczenko.auditor.core.service.AuditFacade;
-import io.github.tkaczenko.auditor.core.service.AuditRequestContext;
-import io.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
-import io.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.api.Auditable;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
+import io.github.tkaczenko.auditor.core.internal.AuditFacade;
+import io.github.tkaczenko.auditor.core.internal.service.ThreadLocalAuditRequestResponseContext;
+import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,7 +58,7 @@ public abstract class AuditInboundRequestFilter extends OncePerRequestFilter imp
       final HttpServletResponse response,
       final FilterChain filterChain)
       throws ServletException, IOException {
-    AuditRequestContext.clearAuditRequestBuilderThreadLocal();
+    ThreadLocalAuditRequestResponseContext.clearAuditRequestBuilderThreadLocal();
 
     Optional<LocalDateTime> createDateTime = auditDateTimeProvider.fromNow();
     if (createDateTime.isEmpty()) {
