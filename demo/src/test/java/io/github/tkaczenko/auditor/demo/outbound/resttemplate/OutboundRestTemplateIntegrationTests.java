@@ -9,7 +9,6 @@ import static io.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource
 import static io.github.tkaczenko.auditor.demo.util.Files.Inbound;
 import static io.github.tkaczenko.auditor.demo.util.Files.Outbound.RestTemplate;
 
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import io.github.tkaczenko.auditor.demo.IntegrationTestScenario;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.DemoClientProperties;
@@ -21,20 +20,22 @@ import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@WireMockTest(httpPort = OutboundRestTemplateIntegrationTests.WIREMOCK_PORT)
+@AutoConfigureWireMock(port = 0)
+@TestPropertySource(properties = "demo-client.url=http://localhost:${wiremock.server.port}/demo-client")
 @DisplayName(
     "OutboundRestTemplateIntegrationTests " + OutboundRestTemplateIntegrationTests.TEST_URL + " ")
 public class OutboundRestTemplateIntegrationTests extends AbstractIntegrationTest {
 
   public static final String TEST_URL = "/test/outbound/restTemplate";
-  public static final int WIREMOCK_PORT = 9561;
 
   @Autowired private DemoClientProperties demoClientProperties;
 

@@ -8,7 +8,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static io.github.tkaczenko.auditor.demo.util.FileUtils.readSystemResource;
 
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.github.tkaczenko.auditor.demo.AbstractIntegrationTest;
 import io.github.tkaczenko.auditor.demo.IntegrationTestScenario;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.FeignClientProperties;
@@ -22,19 +21,21 @@ import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@WireMockTest(httpPort = OutboundFeignIntegrationTests.WIREMOCK_PORT)
+@AutoConfigureWireMock(port = 0)
+@TestPropertySource(properties = "feign.url=http://localhost:${wiremock.server.port}/feign")
 @DisplayName("OutboundFeignIntegrationTests " + OutboundFeignIntegrationTests.TEST_URL + " ")
 public class OutboundFeignIntegrationTests extends AbstractIntegrationTest {
 
   public static final String TEST_URL = "/test/outbound/feign";
-  public static final int WIREMOCK_PORT = 9562;
 
   @Autowired private FeignClientProperties feignClientProperties;
 
