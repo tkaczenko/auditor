@@ -6,7 +6,7 @@
 module auditor.inbound {
   exports io.github.tkaczenko.auditor.inbound;
   exports io.github.tkaczenko.auditor.inbound.config;
-    exports io.github.tkaczenko.auditor.inbound.internal.service;
+  exports io.github.tkaczenko.auditor.inbound.internal.service;
   exports io.github.tkaczenko.auditor.inbound.api;
 
   requires auditor.core;
