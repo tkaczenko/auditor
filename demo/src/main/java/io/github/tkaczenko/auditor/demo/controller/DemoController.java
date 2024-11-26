@@ -1,9 +1,9 @@
 package io.github.tkaczenko.auditor.demo.controller;
 
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.ErrorResponse;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Request;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Response;
 import io.github.tkaczenko.auditor.demo.config.PropertiesConfig.FeignClientProperties;
-import io.github.tkaczenko.auditor.demo.model.dto.ErrorResponse;
-import io.github.tkaczenko.auditor.demo.model.dto.Request;
-import io.github.tkaczenko.auditor.demo.model.dto.Response;
 import io.github.tkaczenko.auditor.demo.service.client.feign.OutboundFeignClient;
 import io.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignRequest;
 import io.github.tkaczenko.auditor.demo.service.client.feign.dto.FeignResponse;
@@ -51,8 +51,7 @@ public class DemoController {
     if (log.isInfoEnabled()) {
       log.info("testOutboundRestTemplate Request: {}", request);
     }
-    RestTemplateResponse response =
-            outboundRestTemplateClient.get();
+    RestTemplateResponse response = outboundRestTemplateClient.get();
     MDC.clear();
     return ResponseEntity.ok(
         Response.builder()
@@ -74,9 +73,7 @@ public class DemoController {
                 .build());
     MDC.clear();
     return ResponseEntity.ok(
-            Response.builder()
-                    .responseTransactionId(response.getFeignResponseTransactionId())
-                    .build());
+        Response.builder().responseTransactionId(response.getFeignResponseTransactionId()).build());
   }
 
   @ExceptionHandler(RuntimeException.class)

@@ -1,3 +1,5 @@
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.accessors.dm.LibrariesForLibs
 
@@ -12,7 +14,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -22,7 +23,7 @@ dependencies {
     testCompileOnly(libs.lombok)
     testAnnotationProcessor(libs.lombok)
 
-    implementation(libs.sl4j.api)
+    implementation(libs.slf4j.api)
 
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockito.junit.core)
@@ -76,7 +77,6 @@ tasks {
 
     test {
         maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
-        forkEvery = 100
 
         useJUnitPlatform()
 
@@ -84,10 +84,20 @@ tasks {
     }
 
     jacocoTestReport {
-        dependsOn(tasks.test)
+        dependsOn(test)
         reports {
             xml.required = true
             html.required = true
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.80".toBigDecimal()
+                }
+            }
         }
     }
 
@@ -98,6 +108,9 @@ tasks {
     }
 
     withType<SpotBugsTask>().configureEach {
+        effort = Effort.MAX
+        reportLevel = Confidence.HIGH
+
         reports {
             create("html") {
                 enabled = true
