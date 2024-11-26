@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.inbound.reader;
+package io.github.tkaczenko.auditor.inbound.api.reader.body;
 
 import io.github.tkaczenko.auditor.core.api.reader.body.BodyHttpReader;
 import java.nio.charset.Charset;

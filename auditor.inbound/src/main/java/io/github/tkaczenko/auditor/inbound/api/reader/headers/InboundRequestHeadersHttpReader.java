@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.inbound.reader;
+package io.github.tkaczenko.auditor.inbound.api.reader.headers;
 
 import io.github.tkaczenko.auditor.core.api.reader.headers.HeadersHttpReader;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.inbound;
+package io.github.tkaczenko.auditor.inbound.internal.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.stream.Stream;

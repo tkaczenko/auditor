@@ -1,4 +1,4 @@
-package io.github.tkaczenko.auditor.inbound;
+package io.github.tkaczenko.auditor.inbound.api;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -11,10 +11,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
 import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
 import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
+import io.github.tkaczenko.auditor.inbound.internal.service.IpAddressSupplier;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

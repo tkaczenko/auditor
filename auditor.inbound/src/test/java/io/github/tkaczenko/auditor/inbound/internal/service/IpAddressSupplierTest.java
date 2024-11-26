@@ -1,8 +1,8 @@
-package io.github.tkaczenko.auditor.inbound;
+package io.github.tkaczenko.auditor.inbound.internal.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.github.tkaczenko.auditor.inbound.IpAddressSupplier.HttpRequestHeader;
+import io.github.tkaczenko.auditor.inbound.internal.service.IpAddressSupplier.HttpRequestHeader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;

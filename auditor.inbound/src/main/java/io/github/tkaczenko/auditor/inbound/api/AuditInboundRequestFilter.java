@@ -1,11 +1,12 @@
-package io.github.tkaczenko.auditor.inbound;
+package io.github.tkaczenko.auditor.inbound.api;
 
 import io.github.tkaczenko.auditor.core.api.Auditable;
-import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
 import io.github.tkaczenko.auditor.core.internal.AuditFacade;
-import io.github.tkaczenko.auditor.core.internal.service.ThreadLocalAuditRequestResponseContext;
 import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
 import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
+import io.github.tkaczenko.auditor.core.internal.service.ThreadLocalAuditRequestResponseContext;
+import io.github.tkaczenko.auditor.inbound.internal.service.IpAddressSupplier;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
