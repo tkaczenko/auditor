@@ -62,6 +62,7 @@ checkstyle {
 }
 
 pmd {
+    threads = 4
     ruleSets = listOf("rulesets/java/quickstart.xml")
     toolVersion = "7.2.0"
 }
@@ -81,6 +82,12 @@ tasks {
         useJUnitPlatform()
 
         finalizedBy(jacocoTestReport)
+
+        systemProperties(
+            "junit.jupiter.execution.parallel.enabled" to "true",
+            "junit.jupiter.execution.parallel.mode.default" to "same_thread",
+            "junit.jupiter.execution.parallel.mode.classes.default" to "concurrent",
+        )
     }
 
     jacocoTestReport {
