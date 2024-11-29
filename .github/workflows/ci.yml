@@ -18,6 +18,7 @@ permissions:
   actions: write
   id-token: write
   contents: write
+  checks: write
 
 concurrency:
   # On master, we don't want any jobs cancelled so the sha is used to name the group
