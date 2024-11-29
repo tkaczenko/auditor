@@ -20,6 +20,7 @@ It facilitates debugging, compliance, and security analysis by offering detailed
 """.trimIndent()
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
