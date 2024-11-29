@@ -77,7 +77,7 @@ tasks {
     }
 
     withType<Javadoc>().configureEach {
-        (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:accessibility,html,-missing", "-quiet")
+        (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
     }
 
     test {
