@@ -11,17 +11,31 @@ import io.restassured.response.ValidatableResponse;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 import lombok.SneakyThrows;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
+@ActiveProfiles("test")
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    properties = "server.tomcat.threads.max=1")
 @DisplayName("MultiInboundIntegrationTests " + MultiInboundIntegrationTests.TEST_URL + " ")
 public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
 
   public static final String TEST_URL = "/test/inbound";
+
+  @Autowired
+  private MultiInboundService multiInboundService;
 
   @Override
   protected void stubScenario(
@@ -46,43 +60,57 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
   @DisplayName("when inbound request comes -> should save AuditRecord and return 200")
   void whenInboundRequestComesShouldSaveAuditRecordAndReturn200() {
     try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
-      CompletableFuture.runAsync(this::executeFirst, executor)
-          .thenRunAsync(this::executeSecond, executor)
+      CompletableFuture.runAsync(() -> this.multiInboundService.executeFirst(this::runAndVerify), executor)
+          .thenRunAsync(() -> this.multiInboundService.executeSecond(this::runAndVerify), executor)
           .join();
     }
   }
 
-  @SneakyThrows
-  private void executeFirst() {
-    runAndVerify(
-        IntegrationTestScenario.builder()
-            .api(
-                IntegrationTestScenario.Api.builder()
-                    .url(TEST_URL)
-                    .status(HttpStatus.OK)
-                    .requestBody(readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_REQUEST))
-                    .responseBody(
-                        Response.class,
-                        readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_RESPONSE))
-                    .build())
-            .expectedTransactionId("transactionId6")
-            .build());
+  @TestConfiguration
+  static class TestConfig {
+    @Bean
+    public MultiInboundService multiInboundService() {
+      return new MultiInboundService();
+    }
   }
 
-  @SneakyThrows
-  private void executeSecond() {
-    runAndVerify(
-        IntegrationTestScenario.builder()
-            .api(
-                IntegrationTestScenario.Api.builder()
-                    .url(TEST_URL)
-                    .status(HttpStatus.OK)
-                    .requestBody(readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_REQUEST))
-                    .responseBody(
-                        Response.class,
-                        readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_RESPONSE))
-                    .build())
-            .expectedTransactionId("transactionId8")
-            .build());
+  static class MultiInboundService {
+
+    @Transactional
+    @SneakyThrows
+    public void executeFirst(Consumer<IntegrationTestScenario> runAndVerify) {
+      runAndVerify.accept(
+          IntegrationTestScenario.builder()
+              .api(
+                  IntegrationTestScenario.Api.builder()
+                      .url(MultiInboundIntegrationTests.TEST_URL)
+                      .status(HttpStatus.OK)
+                      .requestBody(readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_REQUEST))
+                      .responseBody(
+                          Response.class,
+                          readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_RESPONSE))
+                      .build())
+              .expectedTransactionId("transactionId6")
+              .build());
+    }
+
+    @Transactional
+    @SneakyThrows
+    public void executeSecond(Consumer<IntegrationTestScenario> runAndVerify) {
+      runAndVerify.accept(
+          IntegrationTestScenario.builder()
+              .api(
+                  IntegrationTestScenario.Api.builder()
+                      .url(MultiInboundIntegrationTests.TEST_URL)
+                      .status(HttpStatus.OK)
+                      .requestBody(readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_REQUEST))
+                      .responseBody(
+                          Response.class,
+                          readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_RESPONSE))
+                      .build())
+              .expectedTransactionId("transactionId8")
+              .build());
+    }
   }
+
 }

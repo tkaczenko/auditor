@@ -76,7 +76,13 @@ tasks {
         options.isFork = true
     }
 
+    withType<Javadoc>().configureEach {
+        (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:accessibility,html,-missing", "-quiet")
+    }
+
     test {
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+
         useJUnitPlatform()
 
         finalizedBy(jacocoTestReport)
