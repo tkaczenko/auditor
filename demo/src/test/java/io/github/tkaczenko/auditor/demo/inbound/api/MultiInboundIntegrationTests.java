@@ -34,8 +34,7 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
 
   public static final String TEST_URL = "/test/inbound";
 
-  @Autowired
-  private MultiInboundService multiInboundService;
+  @Autowired private MultiInboundService multiInboundService;
 
   @Override
   protected void stubScenario(
@@ -60,7 +59,8 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
   @DisplayName("when inbound request comes -> should save AuditRecord and return 200")
   void whenInboundRequestComesShouldSaveAuditRecordAndReturn200() {
     try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
-      CompletableFuture.runAsync(() -> this.multiInboundService.executeFirst(this::runAndVerify), executor)
+      CompletableFuture.runAsync(
+              () -> this.multiInboundService.executeFirst(this::runAndVerify), executor)
           .thenRunAsync(() -> this.multiInboundService.executeSecond(this::runAndVerify), executor)
           .join();
     }
@@ -83,7 +83,7 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
           IntegrationTestScenario.builder()
               .api(
                   IntegrationTestScenario.Api.builder()
-                      .url(MultiInboundIntegrationTests.TEST_URL)
+                      .url(TEST_URL)
                       .status(HttpStatus.OK)
                       .requestBody(readSystemResource(Multi.INBOUND_MULTI_1_SUCCESS_REQUEST))
                       .responseBody(
@@ -101,7 +101,7 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
           IntegrationTestScenario.builder()
               .api(
                   IntegrationTestScenario.Api.builder()
-                      .url(MultiInboundIntegrationTests.TEST_URL)
+                      .url(TEST_URL)
                       .status(HttpStatus.OK)
                       .requestBody(readSystemResource(Multi.INBOUND_MULTI_2_SUCCESS_REQUEST))
                       .responseBody(
@@ -112,5 +112,4 @@ public class MultiInboundIntegrationTests extends AbstractIntegrationTest {
               .build());
     }
   }
-
 }
