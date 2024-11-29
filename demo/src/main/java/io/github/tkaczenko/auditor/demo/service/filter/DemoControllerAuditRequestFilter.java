@@ -1,11 +1,11 @@
 package io.github.tkaczenko.auditor.demo.service.filter;
 
-import io.github.tkaczenko.auditor.core.service.AuditDateTimeProvider;
-import io.github.tkaczenko.auditor.core.service.AuditFacade;
-import io.github.tkaczenko.auditor.core.service.reader.BodyHttpReaderService;
-import io.github.tkaczenko.auditor.core.service.reader.HeadersHttpReaderService;
-import io.github.tkaczenko.auditor.inbound.AuditInboundRequestFilter;
-import io.github.tkaczenko.auditor.inbound.IpAddressSupplier;
+import io.github.tkaczenko.auditor.core.internal.AuditFacade;
+import io.github.tkaczenko.auditor.core.internal.factory.body.BodyHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.factory.headers.HeadersHttpReaderService;
+import io.github.tkaczenko.auditor.core.internal.service.AuditDateTimeProvider;
+import io.github.tkaczenko.auditor.inbound.api.AuditInboundRequestFilter;
+import io.github.tkaczenko.auditor.inbound.internal.service.IpAddressSupplier;
 import org.springframework.stereotype.Component;
 
 @Component

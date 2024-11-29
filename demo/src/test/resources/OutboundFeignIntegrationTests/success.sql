@@ -15,7 +15,7 @@ values ('2024-06-13 17:00', null, 200, 'transactionId4', 'trace_id',
         '{"Content-Type":["application/json"],"Content-Length":["46"]}',
         'POST',
         '{"feignResponseTransactionId":"feignResponseTransaction1"}',
-        '{"matched-stub-id":["0602d6b3-589e-4658-ae93-b9ed723a0562"],"content-type":["application/json"],"transfer-encoding":["chunked"]}',
+        '{"matched-stub-id":["0602d6b3-589e-4658-ae93-b9ed723a0562"],"content-type":["application/json"],"transfer-encoding":["chunked"],"vary":["Accept-Encoding, User-Agent"]}',
         333,
         null,
         '/feign', default);

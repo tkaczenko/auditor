@@ -78,7 +78,7 @@ publishing {
 }
 
 tasks {
-    withType<JavaCompile> {
+    withType<JavaCompile>().configureEach {
         options.compilerArgs.add("-implicit:class")
     }
 }
