@@ -92,7 +92,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build with Gradle
-        run: ./gradlew -q --no-daemon build
+        run: ./gradlew -q build
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
@@ -145,7 +145,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Publish with Gradle
-        run: ./gradlew -q --no-daemon publish
+        run: ./gradlew -q publish
 
       - name: Release with Gradle
-        run: ./gradlew -q --no-daemon jreleaserFullRelease --no-configuration-cache --full-stacktrace
+        run: ./gradlew -q jreleaserFullRelease --no-configuration-cache --full-stacktrace
