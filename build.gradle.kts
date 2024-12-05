@@ -53,12 +53,18 @@ sonar {
 }
 
 val exportedProjects = listOf(
-    ":auditor.core", ":auditor.inbound", ":auditor.outbound", ":auditor.outbound.feign", ":auditor.cleanup", ":auditor.starter"
+    ":auditor.core", ":auditor.inbound", ":auditor.outbound", ":auditor.starter",
+    ":auditor.outbound.feign", ":auditor.cleanup",
 )
 val aggregatedJavadocDir = layout.buildDirectory.dir("docs/javadoc").get()
 val stagingRepository = layout.buildDirectory.dir("staging-deploy").get()
 
 tasks {
+    check {
+        dependsOn(named<TestReport>("testAggregateTestReport"))
+        dependsOn(named<JacocoReport>("testCodeCoverageReport"))
+    }
+
     withType<SonarTask>() {
         dependsOn(named<TestReport>("testAggregateTestReport"))
         dependsOn(named<JacocoReport>("testCodeCoverageReport"))

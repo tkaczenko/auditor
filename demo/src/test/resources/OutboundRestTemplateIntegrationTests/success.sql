@@ -15,7 +15,7 @@ values ('2024-06-13 17:00', null, 200, 'transactionId2', 'trace_id',
         '{"Authorization":["Basic Y2xpZW50SWQ6Y2xpZW50U2VjcmV0"],"Accept":["application/json, application/*+json"],"Content-Length":["0"]}',
         'GET',
         '{"restTemplateResponseTransactionId":"restTemplateResponseTransaction1"}',
-        '{"Content-Type":["application/json"],"Matched-Stub-Id":["847eb090-6df5-409b-904a-d494504d3af7"],"Transfer-Encoding":["chunked"]}',
+        '{"Content-Type":["application/json"],"Matched-Stub-Id":["847eb090-6df5-409b-904a-d494504d3af7"],"Transfer-Encoding":["chunked"],"Vary":["Accept-Encoding, User-Agent"]}',
         333,
         null,
         '/demo-client', default);

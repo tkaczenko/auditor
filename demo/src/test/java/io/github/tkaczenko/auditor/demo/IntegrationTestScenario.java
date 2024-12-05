@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.stubbing.Scenario;
-import io.github.tkaczenko.auditor.demo.model.dto.Request;
+import io.github.tkaczenko.auditor.demo.cleanup.api.dto.Request;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

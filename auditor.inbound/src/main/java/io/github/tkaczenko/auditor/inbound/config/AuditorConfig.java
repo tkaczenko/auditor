@@ -1,6 +1,6 @@
 package io.github.tkaczenko.auditor.inbound.config;
 
-import io.github.tkaczenko.auditor.inbound.AuditInboundRequestFilter;
+import io.github.tkaczenko.auditor.inbound.api.AuditInboundRequestFilter;
 import java.util.List;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

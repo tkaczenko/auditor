@@ -19,14 +19,14 @@ dependencies {
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.cloud.starter.openfeign)
-    implementation(libs.micrometer.brave)
 
+    implementation(libs.micrometer.brave)
     implementation(libs.h2)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.java.diff)
-    testImplementation(libs.wiremock)
     testImplementation(libs.rest.assured)
     testImplementation(libs.assertj)
     testImplementation(libs.awaitility)
+    testImplementation(libs.spring.cloud.starter.contract.stub.runner)
 }

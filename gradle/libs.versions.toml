@@ -15,7 +15,7 @@ shedlock-spring = "4.29.0"
 assertj = "3.26.0"
 awaitility = "4.2.1"
 micrometer-brave = "1.2.5"
-sl4j-api = "2.0.13"
+slf4j-api = "2.0.13"
 jreleaser_plugin = "1.14.0"
 
 [libraries]
@@ -34,17 +34,17 @@ spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-start
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 spring-cloud-starter-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign" }
+spring-cloud-starter-contract-stub-runner = { module = "org.springframework.cloud:spring-cloud-starter-contract-stub-runner" }
 spotbugs-gradle-plugin = { module = "com.github.spotbugs.snom:spotbugs-gradle-plugin", version.ref = "spotbugs_plugin" }
 java-diff = { module = "de.danielbechler:java-object-diff", version.ref = "java-diff" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
-wiremock = { module = "org.wiremock:wiremock", version.ref = "wiremock" }
 rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "rest-assured" }
 shedlock-spring = { module = "net.javacrumbs.shedlock:shedlock-spring", version.ref = "shedlock-spring" }
 shedlock-provider-jdbc = { module = "net.javacrumbs.shedlock:shedlock-provider-jdbc-template", version.ref = "shedlock-spring" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }
-sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j-api" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api" }
 
 [plugins]
 jreleaser = { id = "org.jreleaser", version.ref = "jreleaser_plugin" }

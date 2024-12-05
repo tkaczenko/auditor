@@ -1,3 +1,5 @@
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.accessors.dm.LibrariesForLibs
 
@@ -12,7 +14,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -22,7 +23,7 @@ dependencies {
     testCompileOnly(libs.lombok)
     testAnnotationProcessor(libs.lombok)
 
-    implementation(libs.sl4j.api)
+    implementation(libs.slf4j.api)
 
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockito.junit.core)
@@ -61,6 +62,7 @@ checkstyle {
 }
 
 pmd {
+    threads = 4
     ruleSets = listOf("rulesets/java/quickstart.xml")
     toolVersion = "7.2.0"
 }
@@ -74,20 +76,37 @@ tasks {
         options.isFork = true
     }
 
-    test {
-        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
-        forkEvery = 100
+    withType<Javadoc>().configureEach {
+        (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
+    }
 
+    test {
         useJUnitPlatform()
 
         finalizedBy(jacocoTestReport)
+
+        systemProperties(
+            "junit.jupiter.execution.parallel.enabled" to "true",
+            "junit.jupiter.execution.parallel.mode.default" to "same_thread",
+            "junit.jupiter.execution.parallel.mode.classes.default" to "concurrent",
+        )
     }
 
     jacocoTestReport {
-        dependsOn(tasks.test)
+        dependsOn(test)
         reports {
             xml.required = true
             html.required = true
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.80".toBigDecimal()
+                }
+            }
         }
     }
 
@@ -98,6 +117,9 @@ tasks {
     }
 
     withType<SpotBugsTask>().configureEach {
+        effort = Effort.MAX
+        reportLevel = Confidence.HIGH
+
         reports {
             create("html") {
                 enabled = true
